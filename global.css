@@ -1,13 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");
 
+/* Modules */
+@import url("./src/components/button/button.css");
+@import url("./src/components/input/input.css");
+
 :root {
   /* Color Palette */
-  --color-primary-50: #fdf2f7;
+  --color-primary-50: #fdf2f8;
   --color-primary-100: #fce7f3;
   --color-primary-200: #fbcfe8;
   --color-primary-300: #f9a8d4;
   --color-primary-400: #f472b6;
-  --color-primary-500: #e53170;
+  --color-primary-500: #ec4899;
   --color-primary-600: #db2777;
   --color-primary-700: #be185d;
   --color-primary-800: #9d174d;
@@ -18,7 +22,7 @@
   --color-secondary-200: #ddd6fe;
   --color-secondary-300: #c4b5fd;
   --color-secondary-400: #a78bfa;
-  --color-secondary-500: #7f5af0;
+  --color-secondary-500: #8b5cf6;
   --color-secondary-600: #7c3aed;
   --color-secondary-700: #6d28d9;
   --color-secondary-800: #5b21b6;
