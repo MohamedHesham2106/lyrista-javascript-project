@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Music App</title>
-    <link rel="stylesheet" href="global.css" />
-    <script src="./src/components/button/button.js" type="module"></script>
-    <script src="./src/components/input/input.js" type="module"></script>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music App</title>
+  <link rel="stylesheet" href="global.css" />
+  <script src="./src/components/button/button.js" type="module"></script>
+  <script src="./src/components/input/input.js" type="module"></script>
+  <script src="./mainScript.js"></script>
+</head>
+
+<body>
+
+  <nav name="navbar" class="navbar-container">
+
+    <div class="navbar-element">
+      <app-button name="appLogo" class="appLogo primary-button" label="Mazika"></app-button>
+    </div>
+
+    <div class="navbar-element right-side">
+
+      <app-button name="search" class="search-button secondary-button"
+        label="search &nbsp;&nbsp;&nbsp;&nbsp; ctrl+k"></app-button>
+      <app-button name="favourites" class="Favourits-button secondary-button" label="Favourits">
+        <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrBD_8VmZBh5hXZe3SLU-G56Dki4DQhkJgpg&s" /> -->
+      </app-button>
+
+      <div class="dropdown">
+        <app-input name="login" type="button" value="Logged" class="login-button" label="logged"></app-input>
+        <div class="dropdown-content" id="dropdownMenu">
+          <a href="#">Log Out</a>
+        </div>
+      </div>
+
+    </div>
+
+  </nav>
+
+  <div class="main">
+    <section class="first-section">
+        <img class="background"
+          src="https://w0.peakpx.com/wallpaper/117/349/HD-wallpaper-music-neon-icon-violet-background-neon-symbols-music-creative-neon-icons-music-sign-music-signs-music-icon-music-icons.jpg" >
+    </section>
+
+  </div>
+
+  <!-- <app-input name="input1" type="text" labelText="TESTlabelTextField"></app-input> -->
+
+
+</body>
+
 </html>

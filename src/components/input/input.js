@@ -8,6 +8,8 @@ class Input extends HTMLElement {
     this.setAttribute("class", "input-container");
     this.width = this.getAttribute("width") || "100%";
     this.name = this.getAttribute("name") || "";
+    this.value = this.getAttribute("value") || "";
+
 
     if (!this.contains(this.label)) {
       this.appendChild(this.label);
@@ -30,6 +32,7 @@ class Input extends HTMLElement {
     this.label.textContent = this.labelText;
     this.label.setAttribute("for", this.name);
 
+    this.input.setAttribute("value",this.value);
     this.input.setAttribute("type", this.type);
     this.input.setAttribute("name", this.name);
     this.input.setAttribute("id", this.name);

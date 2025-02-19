@@ -193,3 +193,66 @@ body {
   color: var(--color-text-primary);
   background-color: var(--color-background);
 }
+
+/* Navbar Container*/
+
+.navbar-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #44415b;
+  width: 100%;
+  padding: 10px 20px;
+
+}
+
+/* The right side on the Navbar*/
+.right-side {
+  display: flex;
+}
+
+.right-side > app-button{
+  margin-right: 20px;
+}
+
+/* Login button with it's drop down menu*/
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 120px;
+  border-radius: 5px;
+  z-index: var(--z-10);
+}
+
+.dropdown-content a {
+  /* color: black; */
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+
+.search-button{
+  border-radius: 50px;
+}
+
+.loggin-button{
+  border-radius: 50px;
+}
+
+.first-section{
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.first-section img{
+  width: 100%;
+  height: 500px;
+}
