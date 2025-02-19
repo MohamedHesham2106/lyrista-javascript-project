@@ -3,6 +3,8 @@
 /* Modules */
 @import url("./src/components/button/button.css");
 @import url("./src/components/input/input.css");
+@import url("./src/components/cd/cd.css");
+@import url("./src/components/form/form.css");
 
 :root {
   /* Color Palette */
@@ -44,6 +46,7 @@
   --color-surface: #1f1e27;
   --color-text-primary: var(--color-neutral-50);
   --color-text-secondary: var(--color-neutral-400);
+  --color-error: #ff2e63;
 
   /* Gradients */
   --gradient-primary: linear-gradient(45deg, var(--color-primary-500), var(--color-primary-600));
@@ -163,11 +166,11 @@
   --border-radius-full: 9999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
 
   /* Z-index */
   --z-0: 0;
@@ -192,6 +195,10 @@ body {
   line-height: 1.5;
   color: var(--color-text-primary);
   background-color: var(--color-background);
+  min-height: 100dvh;
+}
+.hidden {
+  display: none;
 }
 
 /* Navbar Container*/

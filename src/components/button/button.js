@@ -13,12 +13,7 @@ class Button extends HTMLElement {
     this.setupEventListeners();
   }
 
-  setupEventListeners() {
-    const button = this.querySelector("button");
-    button.addEventListener("click", () => {
-      console.log("Button clicked");
-    });
-  }
+  setupEventListeners() {}
 
   render() {
     this.button.setAttribute("type", this.type);
