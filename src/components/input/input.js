@@ -13,12 +13,7 @@ class Input extends HTMLElement {
     this.render();
     this.setupEventListeners();
   }
-  setupEventListeners() {
-    const input = this.querySelector("input");
-    input.addEventListener("input", () => {
-      console.log("Input changed");
-    });
-  }
+  setupEventListeners() {}
   render() {
     this.label.textContent = this.labelText;
     this.label.setAttribute("for", this.name);
