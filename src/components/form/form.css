@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100dvh;
-  padding: var(--spacing-16);
+  padding: var(--spacing-24) var(--spacing-16);
 }
 .error-message {
   color: var(--color-error);

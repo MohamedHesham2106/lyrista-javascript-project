@@ -1,0 +1,29 @@
+.favorite-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: var(--spacing-3);
+  z-index: var(--z-50);
+  border-radius: var(--border-radius-full);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.favorite-btn i {
+  border-radius: var(--border-radius-full);
+  color: var(--color-text-primary);
+  transition: all 0.5s ease;
+  animation: rotate 2s linear infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

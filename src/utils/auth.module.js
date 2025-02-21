@@ -39,8 +39,18 @@ function useAuthentication() {
 
     return "Login successful!";
   }
-
-  return { register, login };
+  function isLoggedIn() {
+    let users = getItem("users");
+    const userIndex = users.findIndex((user) => user.status === "loggedIn");
+    return userIndex !== -1;
+  }
+  function logout() {
+    let users = getItem("users");
+    const userIndex = users.findIndex((user) => user.status === "loggedIn");
+    users[userIndex].status = "loggedOut";
+    setItem("users", users);
+  }
+  return { register, login, isLoggedIn, logout };
 }
 
 export { useAuthentication };

@@ -64,7 +64,9 @@ class Form extends HTMLElement {
     const form = document.createElement("form");
     form.classList.add("form-wrapper");
     form.innerHTML = `
-      <app-cd type="${type === "register" ? "register" : "login"}"></app-cd>
+    <app-tooltip text="When CD is out try to click on it!">
+    <app-cd type="${type === "register" ? "register" : "login"}"></app-cd>
+    </app-tooltip>
       <div class="form-group">
        <div>
         <h2 class="form-title">${type === "login" ? "Login" : "Register"}</h2>
@@ -74,7 +76,9 @@ class Form extends HTMLElement {
           <app-input type="text" name="username" labelText="Username" required></app-input>
           <app-input type="password" name="password" labelText="Password" required></app-input>
         </div>
+       
         <app-button type="submit" label="${type === "login" ? "Login" : "Register"}"></app-button>
+     
         <p class="form-link">${
           type === "register"
             ? "Already have an account? <a>Login here.</a>"

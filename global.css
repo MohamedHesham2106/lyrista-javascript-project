@@ -6,6 +6,9 @@
 @import url("./src/components/cd/cd.css");
 @import url("./src/components/form/form.css");
 @import url("./src/components/navbar/navbar.css");
+@import url("./src/components/tooltip/tooltip.css");
+@import url("./src/components/favorite-button/favorite-button.css");
+@import url("./src/components/modal/modal.css");
 
 :root {
   /* Color Palette */
@@ -204,10 +207,10 @@ body {
 }
 
 .hero-section {
-  height: 95dvh;
+  height: 98dvh;
   width: 100%;
   position: relative;
-  background-image: url("https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-image: url("./src/public/images/hero-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -221,5 +224,5 @@ body {
   height: 100%;
   z-index: 1;
   background: rgba(0, 0, 0, 0.3);
-  box-shadow: inset 80px 80px 250px #000000, inset -80px -80px 250px #000000;
+  box-shadow: inset 150px 150px 250px #000000, inset  -150px  -150px 250px #000000;
 }

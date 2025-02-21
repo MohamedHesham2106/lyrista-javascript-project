@@ -2,8 +2,6 @@ class CD extends HTMLElement {
   constructor() {
     super();
     this.classList.add("cd-cover");
-    this.currentForm =
-      this.getAttribute("type") === "register" ? "Want to log in? Click the CD!" : "New here? Click to register!";
   }
 
   connectedCallback() {
@@ -22,12 +20,11 @@ class CD extends HTMLElement {
   render() {
     const isRegister = this.getAttribute("type") === "register";
 
-    const sleeveImage = isRegister ? "register-cover.jpeg" : "login-cover.jpg";
+    const sleeveImage = isRegister ? "register-cover.jpg" : "login-cover.jpg";
 
     this.innerHTML = `
       <div class="cd-container">
         <div class="cd-sleeve" style="background-image: url('../../public/images/${sleeveImage}')"></div>
-        <h2 class="cd-text">${this.currentForm}</h2>
         <div class="cd"></div>
       </div>
     `;
@@ -50,7 +47,6 @@ class CD extends HTMLElement {
       // Toggle the type (switch images dynamically)
       const newType = this.getAttribute("type") === "register" ? "login" : "register";
       this.setAttribute("type", newType);
-      this.currentForm = newType === "register" ? "Register" : "Login";
       this.render(); // Re-render to apply changes
     }
   };
