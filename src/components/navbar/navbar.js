@@ -29,7 +29,9 @@ class Navbar extends HTMLElement {
         navbar.classList.add('navbar');
 
         navbar.innerHTML = `
-            <a href="/" class="logo"> My APP </a>
+        <app-tooltip side="bottom" text="Welcome To Lyrista">
+            <a href="/" class="logo">Lyrista</a>
+        </app-tooltip>
             <ul class="nav-list">
                 <li class="nav-link">
                     <app-search></app-search>
