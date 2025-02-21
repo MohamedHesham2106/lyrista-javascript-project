@@ -6,6 +6,9 @@
 @import url("./src/components/cd/cd.css");
 @import url("./src/components/form/form.css");
 @import url("./src/components/navbar/navbar.css");
+@import url("./src/components/userButton/userButton.css");
+@import url("./src/components/search/search.css");
+
 
 :root {
   /* Color Palette */

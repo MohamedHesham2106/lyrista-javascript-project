@@ -28,7 +28,7 @@ header {
     list-style: none;
     gap: var(--gap-6);
   }
-  .nav-link:nth-child(2) {
+  /* .nav-link:nth-child(2) {
     position: relative;
     background-color: var(--color-primary-500);
     padding: var(--spacing-2) var(--spacing-1);
@@ -66,4 +66,6 @@ header {
   .menu-item:hover {
     background-color: var(--color-neutral-900);
   }
-  
+   */
+
+   
