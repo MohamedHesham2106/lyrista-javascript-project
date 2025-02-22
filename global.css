@@ -6,7 +6,7 @@
 @import url("./src/components/cd/cd.css");
 @import url("./src/components/form/form.css");
 @import url("./src/components/navbar/navbar.css");
-@import url("./src/components/userButton/userButton.css");
+@import url("./src/components/user-button/user-button.css");
 @import url("./src/components/search/search.css");
 
 @import url("./src/components/tooltip/tooltip.css");
@@ -56,16 +56,31 @@
   --color-error: #ff2e63;
 
   /* Gradients */
-  --gradient-primary: linear-gradient(45deg, var(--color-primary-500), var(--color-primary-600));
-  --gradient-secondary: linear-gradient(45deg, var(--color-secondary-500), var(--color-secondary-600));
-  --gradient-accent: linear-gradient(45deg, var(--color-primary-500), var(--color-secondary-500));
+  --gradient-primary: linear-gradient(
+    45deg,
+    var(--color-primary-500),
+    var(--color-primary-600)
+  );
+  --gradient-secondary: linear-gradient(
+    45deg,
+    var(--color-secondary-500),
+    var(--color-secondary-600)
+  );
+  --gradient-accent: linear-gradient(
+    45deg,
+    var(--color-primary-500),
+    var(--color-secondary-500)
+  );
 
   /* Typography */
-  --font-family-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+  --font-family-sans: "Poppins", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
-  --font-family-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-serif: "Playfair Display", ui-serif, Georgia, Cambria,
+    "Times New Roman", Times, serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
 
   /* Font Sizes  */
   --font-size-xs: 0.75rem;
@@ -176,8 +191,10 @@
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5),
+    0 4px 6px -4px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5),
+    0 8px 10px -6px rgb(0 0 0 / 0.5);
 
   /* Z-index */
   --z-0: 0;
@@ -227,5 +244,5 @@ body {
   height: 100%;
   z-index: 1;
   background: rgba(0, 0, 0, 0.3);
-  box-shadow: inset 150px 150px 250px #000000, inset  -150px  -150px 250px #000000;
+  box-shadow: inset 150px 150px 250px #000000, inset -150px -150px 250px #000000;
 }
