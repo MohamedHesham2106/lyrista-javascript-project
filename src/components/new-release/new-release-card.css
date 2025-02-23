@@ -1,9 +1,68 @@
 .new-release-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   max-height: 100%;
   flex: 0 0 300px;
+}
+.favorite-button {
+  all: unset;
+  position: absolute;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+  z-index: 1;
+  background-color: white;
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-2);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+}
+.favorite-button.active {
+  background-color: var(--color-primary-500);
+  border-color: var(--color-primary-400);
+  outline: none;
+  box-shadow: var(--shadow-lg);
+}
+
+.favorite-button.active i {
+  color: white;
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8);
+  transform: scale(1.1);
+}
+
+.favorite-button i {
+  font-size: var(--font-size-xl);
+  color: var(--color-neutral-900);
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.favorite-button:hover {
+  outline: 3px solid var(--color-primary-400);
+  background-color: var(--color-primary-500);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Icon Hover Effect */
+.favorite-button:hover i {
+  text-shadow: 0px 0px 5px white;
+  color: white;
+  transform: rotate(15deg);
+}
+
+.favorite-button:active {
+  transform: scale(0.95);
+  box-shadow: var(--shadow-sm);
+}
+.favorite-button:focus-visible {
+  outline: 2px solid var(--color-secondary-500);
+  border-color: var(--color-primary-400);
 }
 
 .card {

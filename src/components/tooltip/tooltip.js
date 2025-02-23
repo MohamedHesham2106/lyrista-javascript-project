@@ -1,4 +1,8 @@
 class Tooltip extends HTMLElement {
+  static get observedAttributes() {
+    return ["text"];
+  }
+
   constructor() {
     super();
     this.side = this.getAttribute("side") || "top";
@@ -18,7 +22,14 @@ class Tooltip extends HTMLElement {
     this.removeTooltip();
   }
 
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === "text" && this.tooltipElement) {
+      this.tooltipElement.querySelector(".tooltip-text").textContent = newValue;
+    }
+  }
+
   showTooltip = () => {
+    this.text = this.getAttribute("text") || "Tooltip text";
     if (this.tooltipElement) return;
 
     this.tooltipElement = document.createElement("div");
@@ -26,20 +37,16 @@ class Tooltip extends HTMLElement {
     this.tooltipElement.innerHTML = `<div class="tooltip-text ${this.side}">${this.text}</div>`;
     document.body.appendChild(this.tooltipElement);
 
-    // Get the first child element inside the app-tooltip (the target element)
     const targetElement = this.firstElementChild;
-
     if (!targetElement) {
       console.error("No child element found inside app-tooltip.");
       return;
     }
 
-    // Get the position of the target element relative to the viewport
     const rect = targetElement.getBoundingClientRect();
     const tooltipRect = this.tooltipElement.getBoundingClientRect();
 
     let left, top;
-
     switch (this.side) {
       case "top":
         left = rect.left + rect.width / 2;
@@ -59,7 +66,6 @@ class Tooltip extends HTMLElement {
         break;
     }
 
-    // Ensure the tooltip stays within the viewport
     left = Math.max(0, Math.min(left, window.innerWidth - tooltipRect.width));
     top = Math.max(0, Math.min(top, window.innerHeight - tooltipRect.height));
 
