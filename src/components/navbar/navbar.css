@@ -6,7 +6,7 @@ header {
   padding: var(--spacing-4) var(--spacing-6);
   position: fixed;
   width: 100%;
-  z-index: var(--z-10);
+  z-index: var(--z-50);
 }
 .scrolled {
   background: var(--color-background);

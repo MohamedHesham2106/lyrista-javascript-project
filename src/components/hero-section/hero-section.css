@@ -57,6 +57,7 @@
   z-index: 1;
 }
 .hero-button {
+  cursor: pointer;
   margin-top: 1rem;
   text-shadow: none;
   display: inline-flex;

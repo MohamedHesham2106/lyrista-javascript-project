@@ -34,21 +34,28 @@ class NewReleaseCard extends HTMLElement {
       favoriteButton.classList.add("active");
     }
 
-    favoriteButton.addEventListener("click", (e) => {
+    favoriteButton.addEventListener("click", () => {
       if (favoriteButton.classList.contains("active")) {
         removeFavorite("albums", album);
         favoriteButton.classList.remove("active");
         tooltip.setAttribute("text", `Add ${album.title} to favorites`);
+        this.showToast(`Removed "${album.title}" from favorites`, "error");
       } else {
         addFavorite("albums", album);
         favoriteButton.classList.add("active");
         tooltip.setAttribute("text", "Remove from favorites");
+        this.showToast(`Added "${album.title}" to favorites`, "success");
       }
     });
   }
 
-  attributeChangedCallback() {
-    this.render();
+  showToast(message, type) {
+    const toast = document.createElement("app-toast-message");
+    toast.setAttribute("text", message);
+    toast.setAttribute("type", type);
+    toast.setAttribute("duration", "5000"); // 5 seconds
+
+    document.body.appendChild(toast);
   }
 
   render() {

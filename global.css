@@ -16,6 +16,7 @@
 @import url("./src/components/new-release/new-release.css");
 @import url("./src/components/new-release/new-release-list.css");
 @import url("./src/components/new-release/new-release-card.css");
+@import url("./src/components/toast/toast.css");
 
 :root {
   /* Color Palette */
