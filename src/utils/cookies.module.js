@@ -9,7 +9,7 @@ function cookies() {
     for (const cookie of data) {
       const [currKey, value] = cookie.split("=");
       if (currKey === key) {
-        console.log(`Cookie found: ${currKey}=${value}`);
+        // console.log(`Cookie found: ${currKey}=${value}`);
         return value;
       }
     }

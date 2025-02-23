@@ -1,0 +1,31 @@
+.new-release-container {
+  height: calc(100dvh - 50px);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: var(--spacing-6);
+}
+
+.new-release-container h2 {
+  position: relative;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  margin-bottom: var(--spacing-6);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-5xl);
+}
+.new-release-container h2::before {
+  content: "";
+  position: absolute;
+  left: 48%;
+  bottom: 10px;
+  width: 100%;
+  height: 15px;
+  transform: skew(-30deg) translateX(-50%);
+  background: var(--gradient-accent);
+  z-index: -1;
+}
