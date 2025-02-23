@@ -10,7 +10,7 @@ function cookies() {
       const [currKey, value] = cookie.split("=");
       if (currKey === key) {
         console.log(`Cookie found: ${currKey}=${value}`);
-        return await value;
+        return value;
       }
     }
     console.log("Cookie not found");
@@ -21,9 +21,7 @@ function cookies() {
     console.log("setCookie function called");
     let expiresAt = new Date(Date.now() + 59 * 60 * 1000);
     document.cookie = `${key}=${value}; expires=${expiresAt.toUTCString()};`;
-    console.log(
-      `Cookie set: ${key}=${value}; expires=${expiresAt.toUTCString()}`
-    );
+    console.log(`Cookie set: ${key}=${value}; expires=${expiresAt.toUTCString()}`);
   };
 
   return { getCookie, setCookie };
