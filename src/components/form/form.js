@@ -3,11 +3,17 @@ import { useAuthentication } from "../../utils/auth.module.js";
 class Form extends HTMLElement {
   constructor() {
     super();
+
     this.formTitle = this.getAttribute("formTitle") || "login";
     this.classList.add("form-container");
   }
 
   connectedCallback() {
+    // Redirect to home page if user is already logged in
+    const { isLoggedIn } = useAuthentication();
+    if (isLoggedIn()) {
+      window.location.href = "/";
+    }
     this.render();
     this.setupEventListeners();
   }

@@ -1,6 +1,7 @@
 class Modal extends HTMLElement {
   constructor() {
     super();
+    this.isOpen = false;
     this.render();
   }
 
@@ -11,15 +12,19 @@ class Modal extends HTMLElement {
     });
     this.setupEventListeners();
   }
+
   setupEventListeners() {
     document.addEventListener("modal-trigger", () => this.open());
   }
+
   open() {
-    this.querySelector(".modal").classList.add("show");
+    this.isOpen = true;
+    this.querySelector(".modal").setAttribute("open", "");
   }
 
   close() {
-    this.querySelector(".modal").classList.remove("show");
+    this.isOpen = false;
+    this.querySelector(".modal").removeAttribute("open");
   }
 
   render() {

@@ -13,7 +13,7 @@
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-.modal.show {
+.modal[open] {
   opacity: 1;
   visibility: visible;
 }
@@ -25,11 +25,11 @@
   padding: var(--spacing-2) var(--spacing-8);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-lg);
-  transform: translateY(-20px);
+  transform: translateY(20px);
   transition: transform 0.3s ease;
   overflow-y: auto;
 }
-.modal.show .modal-content {
+.modal[open] .modal-content {
   transform: translateY(0);
 }
 .close {

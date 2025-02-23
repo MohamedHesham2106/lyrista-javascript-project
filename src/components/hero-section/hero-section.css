@@ -1,0 +1,112 @@
+.hero-section {
+  height: 100dvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  color: var(--color-text-primary);
+}
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 750px;
+  text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.6);
+  text-wrap: balance;
+}
+.hero-title {
+  font-family: var(--font-family-serif);
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-black);
+  margin-bottom: var(--spacing-5);
+  line-height: 1.2;
+}
+.hero-text {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xl);
+  line-height: 1.6;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../../src/public/images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+.hero-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: inset 150px 150px 250px #000000, inset -150px -150px 250px #000000;
+  z-index: 1;
+}
+.hero-button {
+  cursor: pointer;
+  margin-top: 1rem;
+  text-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3) var(--spacing-6);
+  background-color: var(--color-secondary-500);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-black);
+  border-radius: var(--border-radius);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+}
+
+.hero-button-text {
+  transition: transform 0.3s ease;
+}
+
+.hero-button:hover .hero-button-text {
+  transform: translateX(-10px);
+}
+
+.hero-button-icon {
+  position: absolute;
+  right: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(20px) rotate(90deg) scale(0);
+}
+
+.hero-button:hover .hero-button-icon {
+  opacity: 1;
+  transform: translateX(4px) rotate(0deg) scale(1);
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+  }
+}
