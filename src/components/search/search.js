@@ -4,7 +4,7 @@ class SearchButton extends HTMLElement {
     this.button =
       this.querySelector("button") || document.createElement("button");
     this.type = "button";
-    this.className = this.getAttribute("class") || "searchButton";
+    this.className = this.getAttribute("class") || "search-button";
     this.width = this.getAttribute("width") || "100%";
   }
 

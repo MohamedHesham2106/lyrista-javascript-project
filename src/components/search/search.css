@@ -1,4 +1,4 @@
-.searchButton {
+.search-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,8 +16,8 @@
   cursor: pointer;
 }
 
-.searchButton:active,
-.searchButton:hover {
+.search-button:active,
+.search-button:hover {
   background-color: var(--color-neutral-50);
   box-shadow: inset var(--spacing-0) var(--spacing-0) var(--spacing-4)
     var(--spacing-1) var(--color-primary-500);

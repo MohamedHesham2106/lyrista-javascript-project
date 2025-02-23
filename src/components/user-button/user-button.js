@@ -33,11 +33,18 @@ class UserButton extends HTMLElement {
   setupEventListeners() {
     const userButtonIcon = this.querySelector(".fa-circle-user");
     if (userButtonIcon) {
-      userButtonIcon.addEventListener("click", () => {
+      userButtonIcon.addEventListener("click", (event) => {
         const menu = this.querySelector(".menu");
         menu.classList.toggle("hidden");
       });
     }
+
+    window.addEventListener("click", (event) => {
+      const menu = this.querySelector(".menu");
+      if (!menu.classList.contains("hidden") && !this.contains(event.target)) {
+        menu.classList.add("hidden");
+      }
+    });
 
     const getStartedButton = this.querySelector("app-button");
     if (getStartedButton) {
