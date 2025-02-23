@@ -45,6 +45,15 @@ class UserButton extends HTMLElement {
         window.location.href = "/src/pages/Authentication/index.html";
       });
     }
+
+    const logOutTab = this.querySelector(".log-out");
+
+    logOutTab.addEventListener("click", () => {
+      useAuthentication().logout();
+      this.innerHTML = `
+       <app-button label="Get Started"></app-button>
+      `;
+    });
   }
 
   render() {
@@ -52,12 +61,12 @@ class UserButton extends HTMLElement {
 
     this.innerHTML = ""; // Clear previous content
 
-    if (isLoggedIn) {
+    if (isLoggedIn()) {
       this.innerHTML = `
                 <li class="nav-link">
                     <i class="fa-solid fa-circle-user fa-2xl"></i>
                     <div class="menu hidden">
-                        <div class="menu-item">Log out</div>
+                        <div class="menu-item log-out">Log out</div>
                     </div>
                 </li>
             `;

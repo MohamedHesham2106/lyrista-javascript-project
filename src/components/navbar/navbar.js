@@ -31,7 +31,7 @@ class Navbar extends HTMLElement {
             <a href="/" class="logo">Lyrista</a>
         </app-tooltip>
             <ul class="nav-list">
-                <li class="nav-link">
+                <li>
                     <app-search></app-search>
                 </li>
                 <app-userbutton></app-userbutton>
