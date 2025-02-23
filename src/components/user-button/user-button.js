@@ -32,19 +32,22 @@ class UserButton extends HTMLElement {
 
   setupEventListeners() {
     const userButtonIcon = this.querySelector(".fa-circle-user");
+    const menu = this.querySelector(".menu");
     if (userButtonIcon) {
       userButtonIcon.addEventListener("click", (event) => {
-        const menu = this.querySelector(".menu");
         menu.classList.toggle("hidden");
       });
     }
-
-    window.addEventListener("click", (event) => {
-      const menu = this.querySelector(".menu");
-      if (!menu.classList.contains("hidden") && !this.contains(event.target)) {
-        menu.classList.add("hidden");
-      }
-    });
+    if (menu) {
+      window.addEventListener("click", (event) => {
+        if (
+          !menu.classList.contains("hidden") &&
+          !this.contains(event.target)
+        ) {
+          menu.classList.add("hidden");
+        }
+      });
+    }
 
     const getStartedButton = this.querySelector("app-button");
     if (getStartedButton) {
@@ -54,13 +57,15 @@ class UserButton extends HTMLElement {
     }
 
     const logOutTab = this.querySelector(".log-out");
-
-    logOutTab.addEventListener("click", () => {
-      useAuthentication().logout();
-      this.innerHTML = `
-       <app-button label="Get Started"></app-button>
-      `;
-    });
+    if (logOutTab) {
+      logOutTab.addEventListener("click", () => {
+        useAuthentication().logout();
+        this.innerHTML = `
+        <app-button label="Get Started"></app-button>
+        `;
+        this.setupEventListeners();
+      });
+    }
   }
 
   render() {
