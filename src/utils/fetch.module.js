@@ -48,12 +48,45 @@ function useFetch() {
     cookies().setCookie("access_token", data.access_token);
     return data.access_token;
   }
-  const getNewReleases = async () => {
+  const getNewReleases = async (limit = 50) => {
     const response = await fetch(
-      "https://api.spotify.com/v1/browse/new-releases?limit=50",
+      `https://api.spotify.com/v1/browse/new-releases?limit=${limit}`,
       await option()
     );
     const data = await response.json();
+    return data;
+  };
+
+  const getNewReleasesTracks = async (limit = 5) => {
+    let now = new Date();
+    let start = now.getSeconds();
+    const response = await getNewReleases(limit);
+    now = new Date();
+    let end = now.getSeconds();
+    console.log("time to get new realsed albums");
+    console.log(end - start);
+
+    const newReleasesAlbums = await response.albums.items;
+    let data = [];
+    now = new Date();
+    start = now.getSeconds();
+    for (let key1 in newReleasesAlbums) {
+      let track;
+      if (newReleasesAlbums[key1]["album_type"] === "single") {
+        data.push(newReleasesAlbums[key1]);
+      } else {
+        const returnedAlbum = await getAlbum(newReleasesAlbums[key1].id);
+        const tracks = returnedAlbum.tracks.items;
+        for (let key2 in tracks) {
+          data.push(await getTrack(tracks[key2].id));
+        }
+      }
+    }
+    // console.log(data);
+    now = new Date();
+    end = now.getSeconds();
+    console.log(end - start);
+
     return data;
   };
 
@@ -85,7 +118,7 @@ function useFetch() {
     return data;
   };
 
-  return { getNewReleases, getAlbum, getTrack, search };
+  return { getNewReleases, getAlbum, getTrack, search, getNewReleasesTracks };
 }
 async function testCookies() {
   const cookieManager = cookies();

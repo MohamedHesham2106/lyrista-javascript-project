@@ -4,7 +4,7 @@
   justify-content: center;
   background-color: var(--color-neutral-200);
   border-radius: var(--border-radius-3xl);
-  border-width: var(--spacing-0-5);
+  border-width: var(--spacing-px);
   color: var(--color-neutral-500);
   font-weight: var(--font-weight-meduim);
   font-size: var(--font-size-xl);
@@ -18,11 +18,10 @@
 
 .search-button:active,
 .search-button:hover {
-  background-color: var(--color-neutral-50);
-  box-shadow: inset var(--spacing-0) var(--spacing-0) var(--spacing-4)
-    var(--spacing-1) var(--color-primary-500);
+  background-image: var(--gradient-accent);
+  /* background-color: var(--color-neutral-50); */
   color: var(--color-neutral-900);
-  border-color: var(--color-neutral-900);
+  border-color: var(--color-primary-400);
 }
 
 .search-button-icons {
