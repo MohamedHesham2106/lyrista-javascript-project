@@ -4,8 +4,9 @@
   flex-direction: column;
   width: 100%;
   max-height: 100%;
-  flex: 0 0 300px;
+  flex: 0 0 300px; 
 }
+
 .favorite-button {
   all: unset;
   position: absolute;
@@ -23,6 +24,7 @@
   justify-content: center;
   border: 2px solid transparent;
 }
+
 .favorite-button.active {
   background-color: var(--color-primary-500);
   border-color: var(--color-primary-400);
@@ -49,7 +51,6 @@
   box-shadow: var(--shadow-xl);
 }
 
-/* Icon Hover Effect */
 .favorite-button:hover i {
   text-shadow: 0px 0px 5px white;
   color: white;
@@ -60,6 +61,7 @@
   transform: scale(0.95);
   box-shadow: var(--shadow-sm);
 }
+
 .favorite-button:focus-visible {
   outline: 2px solid var(--color-secondary-500);
   border-color: var(--color-primary-400);
@@ -143,6 +145,7 @@
   transform: translateX(4px);
   transition: transform 0.3s ease;
 }
+
 .spotify-link:hover .spotify-link-text {
   transform: translateX(-4px);
 }
@@ -156,4 +159,48 @@
 .spotify-link:hover .spotify-link-icon {
   opacity: 1;
   transform: scale(1.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .new-release-card {
+    flex: 0 0 250px;
+  }
+
+  .new-release-card img {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (max-width: 992px) {
+  .new-release-card img {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .new-release-card img {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (max-width: 576px) {
+  .new-release-card {
+    flex: 0 0 100%;
+  }
+
+  .new-release-card img {
+    aspect-ratio: 1 / 1;
+    max-height: 200px;
+  }
+
+  .favorite-button {
+    top: var(--spacing-2);
+    right: var(--spacing-2);
+    padding: var(--spacing-1);
+  }
+
+  .favorite-button i {
+    font-size: var(--font-size-lg);
+  }
 }

@@ -7,11 +7,14 @@ header {
   position: fixed;
   width: 100%;
   z-index: var(--z-50);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
+
 .scrolled {
   background: var(--color-background);
   box-shadow: var(--shadow-md);
 }
+
 .navbar {
   display: flex;
   width: 100%;
@@ -19,6 +22,7 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+
 .logo {
   text-decoration: none;
   color: var(--color-text-primary);
@@ -26,47 +30,113 @@ header {
   font-size: var(--font-size-3xl);
   font-family: var(--font-family-serif);
 }
+
 .nav-list {
   display: flex;
   align-items: center;
   list-style: none;
   gap: var(--gap-6);
 }
-.nav-link:nth-child(2) {
-  position: relative;
-  background-color: var(--color-primary-500);
-  padding: var(--spacing-2) var(--spacing-1);
-  border-radius: var(--border-radius-full);
-  box-shadow: var(--shadow-lg);
+
+.nav-item {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.hamburger-menu {
+  display: none;
   cursor: pointer;
-}
-.nav-link:hover {
-  background-color: var(--color-primary-600);
-}
-.menu {
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background-color: var(--color-surface);
-  padding: var(--spacing-2) var(--spacing-3);
-  width: fit-content;
-  border-radius: var(--border-radius-lg);
-  gap: var(--gap-2);
-}
-.menu-item {
-  min-width: 100px;
-  text-align: center;
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-sm);
-  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-3xl);
   color: var(--color-text-primary);
-  border-radius: var(--border-radius-lg);
-  transition: background-color 0.3s ease-in-out;
-  text-transform: uppercase;
+  transition: transform 0.3s ease;
 }
-.menu-item:hover {
-  background-color: var(--color-neutral-900);
+
+.hamburger-menu:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 0 var(--spacing-8);
+  }
+
+  .logo {
+    font-size: var(--font-size-2xl);
+  }
+
+  .nav-list {
+    gap: var(--gap-4);
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar {
+    padding: 0 var(--spacing-6);
+  }
+
+  .nav-list {
+    gap: var(--gap-3);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 var(--spacing-4);
+  }
+
+  .nav-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-background);
+    flex-direction: column;
+    gap: var(--gap-4);
+    padding: var(--spacing-4);
+    display: none;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-list.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-item {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  .nav-item.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 0 var(--spacing-2);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

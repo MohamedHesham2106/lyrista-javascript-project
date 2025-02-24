@@ -1,3 +1,4 @@
+import { useAuthentication } from "../../utils/auth.module.js";
 import { useFavorite } from "../../utils/favorite.module.js";
 
 class NewReleaseCard extends HTMLElement {
@@ -11,42 +12,49 @@ class NewReleaseCard extends HTMLElement {
   }
 
   setupEventListeners() {
+    const { isLoggedIn } = useAuthentication();
     const favoriteButton = this.querySelector(".favorite-button");
     const tooltip = this.querySelector("app-tooltip");
     if (!favoriteButton || !tooltip) return;
+    if (!isLoggedIn()) {
+      favoriteButton.addEventListener("click", () => {
+        window.location.href = "./src/pages/Authentication/index.html";
+      });
+      tooltip.setAttribute("text", "Login to add to favorites");
+    } else {
+      const { addFavorite, getFavorites, removeFavorite } = useFavorite();
+      const album = {
+        title: this.getAttribute("title"),
+        artist: this.getAttribute("artist"),
+        image: this.getAttribute("image"),
+        releaseDate: this.getAttribute("release-date"),
+        spotifyUrl: this.getAttribute("spotify-url"),
+      };
 
-    const { addFavorite, getFavorites, removeFavorite } = useFavorite();
-    const album = {
-      title: this.getAttribute("title"),
-      artist: this.getAttribute("artist"),
-      image: this.getAttribute("image"),
-      releaseDate: this.getAttribute("release-date"),
-      spotifyUrl: this.getAttribute("spotify-url"),
-    };
+      const favorites = getFavorites();
+      const isFavorited = favorites.albums.some((fav) => fav.title === album.title && fav.artist === album.artist);
 
-    const favorites = getFavorites();
-    const isFavorited = favorites.albums.some((fav) => fav.title === album.title && fav.artist === album.artist);
+      // Set initial tooltip text
+      tooltip.setAttribute("text", isFavorited ? "Remove from favorites" : `Add ${album.title} to favorites`);
 
-    // Set initial tooltip text
-    tooltip.setAttribute("text", isFavorited ? "Remove from favorites" : `Add ${album.title} to favorites`);
-
-    if (isFavorited) {
-      favoriteButton.classList.add("active");
-    }
-
-    favoriteButton.addEventListener("click", () => {
-      if (favoriteButton.classList.contains("active")) {
-        removeFavorite("albums", album);
-        favoriteButton.classList.remove("active");
-        tooltip.setAttribute("text", `Add ${album.title} to favorites`);
-        this.showToast(`Removed "${album.title}" from favorites`, "error");
-      } else {
-        addFavorite("albums", album);
+      if (isFavorited) {
         favoriteButton.classList.add("active");
-        tooltip.setAttribute("text", "Remove from favorites");
-        this.showToast(`Added "${album.title}" to favorites`, "success");
       }
-    });
+
+      favoriteButton.addEventListener("click", () => {
+        if (favoriteButton.classList.contains("active")) {
+          removeFavorite("albums", album);
+          favoriteButton.classList.remove("active");
+          tooltip.setAttribute("text", `Add ${album.title} to favorites`);
+          this.showToast(`Removed "${album.title}" from favorites`, "error");
+        } else {
+          addFavorite("albums", album);
+          favoriteButton.classList.add("active");
+          tooltip.setAttribute("text", "Remove from favorites");
+          this.showToast(`Added "${album.title}" to favorites`, "success");
+        }
+      });
+    }
   }
 
   showToast(message, type) {

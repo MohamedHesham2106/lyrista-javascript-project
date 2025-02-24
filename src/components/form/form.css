@@ -84,11 +84,15 @@
 
 @media (max-width: 992px) {
   .form-wrapper {
+    margin-top: 4rem;
     height: auto;
     flex-direction: column;
     min-width: 90%;
-    gap: var(--gap-16);
-    padding: var(--spacing-24) var(--spacing-8);
+    gap: var(--gap-8);
+    padding: var(--spacing-8);
+  }
+  .form-title {
+    font-size: var(--font-size-3xl);
   }
   .form-link {
     display: block;
@@ -124,7 +128,7 @@
 @media (max-width: 768px) {
   .form-container {
     overflow: hidden;
-    padding: var(--spacing-4);
+    padding: var(--spacing-8) var(--spacing-4);
   }
   .form-wrapper {
     width: 100%;
@@ -134,7 +138,7 @@
   }
 
   .form-title {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-2xl);
   }
 
   .form-group {

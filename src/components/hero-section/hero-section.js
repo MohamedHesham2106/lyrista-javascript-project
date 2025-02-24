@@ -11,7 +11,7 @@ class Hero extends HTMLElement {
     this.render(); // Render first to ensure elements exist
 
     const { isLoggedIn } = useAuthentication();
-    if (isLoggedIn) {
+    if (isLoggedIn()) {
       this.buttonText = "Go To Your Library";
 
       const button = this.querySelector(".hero-button");

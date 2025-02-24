@@ -28,20 +28,16 @@ function useAuthentication() {
 
   function login({ username, password }) {
     let users = getItem("users");
-    const userIndex = users.findIndex(
-      (user) => user.username === username && user.password === password
-    );
+    const userIndex = users.findIndex((user) => user.username === username && user.password === password);
 
     if (userIndex === -1) {
-      throw new Error(
-        `<span class="error">Invalid username or password.</span>`
-      );
+      throw new Error(`<span class="error">Invalid username or password.</span>`);
     }
 
     users[userIndex].status = "loggedIn";
     setItem("users", users);
 
-    return "Login successful!";
+    window.location.href = "/";
   }
   function isLoggedIn() {
     let users = getItem("users");

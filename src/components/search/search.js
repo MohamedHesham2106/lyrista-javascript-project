@@ -1,8 +1,7 @@
 class SearchButton extends HTMLElement {
   constructor() {
     super();
-    this.button =
-      this.querySelector("button") || document.createElement("button");
+    this.button = this.querySelector("button") || document.createElement("button");
     this.type = "button";
     this.className = this.getAttribute("class") || "search-button";
     this.width = this.getAttribute("width") || "100%";
@@ -67,13 +66,11 @@ class SearchButton extends HTMLElement {
     src="https://img.icons8.com/color/48/k-key.png"
     alt="k-key"
   />
-    `;
+  `;
 
     if (!this.contains(this.button)) {
       this.appendChild(this.button);
     }
-
-    console.log(this);
 
     this.removeAttribute("label");
     this.removeAttribute("type");
