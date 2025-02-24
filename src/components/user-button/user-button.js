@@ -6,8 +6,8 @@ class UserButton extends HTMLElement {
     super();
   }
 
-  // async connectedCallback() {
-  connectedCallback() {
+  async connectedCallback() {
+    // connectedCallback() {
     this.render();
     this.setupEventListeners();
 
@@ -17,14 +17,17 @@ class UserButton extends HTMLElement {
      * before testing
      */
 
-    // console.log("newReleases data from user button : ");
+    // console.log("newReleases albums data from user button : ");
     // console.log(await useFetch().getNewReleases());
 
-    // console.log("albums data from user button : ");
+    // console.log("album data from user button : ");
     // console.log(await useFetch().getAlbum("4aawyAB9vmqN3uQ7FjRGTy"));
 
-    // console.log("tracks data from user button : ");
-    // console.log(await useFetch().getTrack("11dFghVXANMlKmJXsNCbNl"));
+    console.log("new released tracks data from user button : ");
+    console.log(await useFetch().getNewReleasesTracks());
+
+    console.log("track data from user button : ");
+    console.log(await useFetch().getTrack("11dFghVXANMlKmJXsNCbNl"));
 
     // console.log("search data from user button : ");
     // console.log( await useFetch().search( "remaster%2520track%3ADoxy%2520artist%3AMiles%2520Davis&typ","album"));
