@@ -2,6 +2,7 @@ class NewRelease extends HTMLElement {
   constructor() {
     super();
     this.classList.add("new-release-container");
+    this.dataType = this.getAttribute("data-type") || "albums";
   }
   connectedCallback() {
     this.render();
@@ -9,8 +10,8 @@ class NewRelease extends HTMLElement {
   render() {
     if (!this.innerHTML) {
       this.innerHTML = `
-        <h2>New Albums</h2>
-        <app-new-release-list></app-new-release-list>
+        <h2>${this.dataType === 'albums' ?"New Albums" : "New Tracks"}</h2>
+        <app-new-release-list data-type=${this.dataType}></app-new-release-list>
       `;
     }
   }

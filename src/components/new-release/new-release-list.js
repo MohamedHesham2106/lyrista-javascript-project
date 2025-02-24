@@ -11,6 +11,7 @@ class NewReleaseSlider extends HTMLElement {
     this.slideWidth = 0;
     this.currentIndex = 0;
     this.autoScrollInterval = null;
+    this.dataType = this.getAttribute("data-type") || "albums";
   }
 
   async connectedCallback() {
@@ -22,8 +23,9 @@ class NewReleaseSlider extends HTMLElement {
 
   async fetchData() {
     try {
-      const data = await this.getNewReleases();
-      this.data = data.albums.items.map((release) => ({
+      const data = await this.getNewReleases(this.dataType === "albums" ? "album" : "single");
+
+      this.data = data.map((release) => ({
         title: release.name,
         artist: release.artists.map((artist) => artist.name).join(", "),
         image: release.images.length > 0 ? release.images[0].url : "",
@@ -35,7 +37,6 @@ class NewReleaseSlider extends HTMLElement {
       this.setupSlider();
       this.startAutoScroll();
     } catch (error) {
-      console.error("Error fetching new releases:", error);
       this.innerHTML = `<p class="error">Failed to load new releases.</p>`;
     }
   }
@@ -53,6 +54,7 @@ class NewReleaseSlider extends HTMLElement {
             .map(
               (release) => `
                 <app-new-release-card
+                  data-type="${this.dataType}"
                   title="${release.title}"
                   artist="${release.artist}"
                   image="${release.image}"

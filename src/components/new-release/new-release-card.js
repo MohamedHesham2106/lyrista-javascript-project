@@ -4,6 +4,7 @@ import { useFavorite } from "../../utils/favorite.module.js";
 class NewReleaseCard extends HTMLElement {
   constructor() {
     super();
+    this.dataType = this.getAttribute("data-type") || "albums";
     this.classList.add("new-release-card");
   }
 
@@ -43,12 +44,12 @@ class NewReleaseCard extends HTMLElement {
 
       favoriteButton.addEventListener("click", () => {
         if (favoriteButton.classList.contains("active")) {
-          removeFavorite("albums", album);
+          removeFavorite(this.dataType, album);
           favoriteButton.classList.remove("active");
           tooltip.setAttribute("text", `Add ${album.title} to favorites`);
           this.showToast(`Removed "${album.title}" from favorites`, "error");
         } else {
-          addFavorite("albums", album);
+          addFavorite(this.dataType, album);
           favoriteButton.classList.add("active");
           tooltip.setAttribute("text", "Remove from favorites");
           this.showToast(`Added "${album.title}" to favorites`, "success");

@@ -48,13 +48,34 @@ function useFetch() {
     cookies().setCookie("access_token", data.access_token);
     return data.access_token;
   }
-  const getNewReleases = async (limit = 50) => {
-    const response = await fetch(
-      `https://api.spotify.com/v1/browse/new-releases?limit=${limit}`,
-      await option()
-    );
-    const data = await response.json();
-    return data;
+  const getNewReleases = async (albumType = "album", limit = 150) => {
+    const allAlbums = [];
+    let offset = 0;
+    const maxLimit = 50;
+
+    while (allAlbums.length < limit) {
+      const remaining = limit - allAlbums.length;
+      const fetchLimit = remaining > maxLimit ? maxLimit : remaining;
+
+      const response = await fetch(
+        `https://api.spotify.com/v1/browse/new-releases?limit=${fetchLimit}&offset=${offset}`,
+        await option()
+      );
+
+      const data = await response.json();
+
+      if (!data.albums?.items) break;
+
+      // Filter based on albumType
+      const filteredAlbums = data.albums.items.filter((album) => album.album_type === albumType);
+      allAlbums.push(...filteredAlbums);
+
+      if (data.albums.items.length < fetchLimit) break;
+
+      offset += fetchLimit;
+    }
+
+    return allAlbums;
   };
 
   const getNewReleasesTracks = async (limit = 5) => {
@@ -71,7 +92,6 @@ function useFetch() {
     now = new Date();
     start = now.getSeconds();
     for (let key1 in newReleasesAlbums) {
-      let track;
       if (newReleasesAlbums[key1]["album_type"] === "single") {
         data.push(newReleasesAlbums[key1]);
       } else {
@@ -91,29 +111,20 @@ function useFetch() {
   };
 
   const getAlbum = async (albumName) => {
-    const response = await fetch(
-      `https://api.spotify.com/v1/albums/${albumName}`,
-      await option()
-    );
+    const response = await fetch(`https://api.spotify.com/v1/albums/${albumName}`, await option());
 
     const data = await response.json();
     return data;
   };
 
   const getTrack = async (trackName) => {
-    const response = await fetch(
-      `https://api.spotify.com/v1/tracks/${trackName}`,
-      await option()
-    );
+    const response = await fetch(`https://api.spotify.com/v1/tracks/${trackName}`, await option());
     const data = await response.json();
     return data;
   };
 
   const search = async (searchInput, type) => {
-    const response = await fetch(
-      `https://api.spotify.com/v1/search?q=${searchInput}&type=${type}`,
-      await option()
-    );
+    const response = await fetch(`https://api.spotify.com/v1/search?q=${searchInput}&type=${type}`, await option());
     const data = await response.json();
     return data;
   };
