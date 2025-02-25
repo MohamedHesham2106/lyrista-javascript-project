@@ -18,10 +18,10 @@
   visibility: visible;
 }
 .modal-content {
-  color: black;
+  color: var(--color-text-primary);
   width: 800px;
   aspect-ratio: 2 / 1;
-  background: white;
+  background: var(--color-surface);
   padding: var(--spacing-2) var(--spacing-8);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-lg);
@@ -35,12 +35,12 @@
 .close {
   cursor: pointer;
   font-size: var(--font-size-3xl);
-  color: black;
+  color: var(--color-text-primary);
   font-weight: bold;
   position: absolute;
   top: 1%;
   right: 2%;
 }
 .close:hover {
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--color-text-secondary);
 }

@@ -1,6 +1,6 @@
 .nav-link {
   position: relative;
-  background-color: var(--color-primary-500);
+  background: var(--gradient-accent);
   padding: var(--spacing-2) var(--spacing-1);
   border-radius: var(--border-radius-full);
   box-shadow: var(--shadow-lg);

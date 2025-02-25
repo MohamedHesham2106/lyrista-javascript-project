@@ -18,6 +18,7 @@
     <script src="./src/components/new-release/new-release-list.js" type="module"></script>
     <script src="./src/components/new-release/new-release-card.js" type="module"></script>
     <script src="./src/components/toast/toast.js" type="module"></script>
+    <script src="./src/components/search-result/search-form.js" type="module"></script>
     <script src="https://kit.fontawesome.com/5aa7974f62.js" crossorigin="anonymous"></script>
   </head>
 
@@ -27,9 +28,7 @@
     <app-new-release data-type="albums"></app-new-release>
     <app-new-release data-type="tracks"></app-new-release>
     <app-modal>
-      <h1 slot="title">Modal Title</h1>
-      <p slot="content">This is the modal content!</p>
-      <button slot="actions">Close</button>
+      <app-search-form></app-search-form>
     </app-modal>
     <app-favorite-button> </app-favorite-button>
   </body>

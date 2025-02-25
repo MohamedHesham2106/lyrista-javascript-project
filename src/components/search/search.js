@@ -44,28 +44,12 @@ class SearchButton extends HTMLElement {
     this.button.setAttribute("class", this.className);
     this.button.style.width = this.width;
     this.button.innerHTML = `
-  <img
-    class="search-button-icons"
-    width="30"
-    height="30"
-    src="https://img.icons8.com/glyph-neue/64/search--v1.png"
-    alt="search--v1"
-  />
-  Search
-    <img
-    class="search-button-icons"
-    width="45"
-    height="40"
-    src="https://img.icons8.com/color/48/ctrl.png"
-    alt="ctrl"
-  />
-  <img
-    class="search-button-icons"
-    width="45"
-    height="40"
-    src="https://img.icons8.com/color/48/k-key.png"
-    alt="k-key"
-  />
+   
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <span>Search</span>
+  <div class="shortcut">
+  <span>Ctrl</span><span>K</span>
+  </div>
   `;
 
     if (!this.contains(this.button)) {

@@ -73,7 +73,9 @@ class Navbar extends HTMLElement {
         </app-tooltip>
         <ul class="nav-list">
           <li class="nav-item">
+           <app-tooltip text="Search for your favorite tunes" side="bottom">
             <app-search></app-search>
+            </app-tooltip>
           </li>
           <li class="nav-item">
             <app-userbutton></app-userbutton>
