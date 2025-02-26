@@ -124,7 +124,10 @@ function useFetch() {
   };
 
   const search = async (searchInput, type) => {
-    const response = await fetch(`https://api.spotify.com/v1/search?q=${searchInput}&type=${type}`, await option());
+    const response = await fetch(
+      `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchInput)}&type=${type.toLowerCase()}`,
+      await option()
+    );
     const data = await response.json();
     return data;
   };
