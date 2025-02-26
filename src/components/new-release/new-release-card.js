@@ -33,7 +33,9 @@ class NewReleaseCard extends HTMLElement {
       };
 
       const favorites = getFavorites();
-      const isFavorited = favorites.albums.some((fav) => fav.title === album.title && fav.artist === album.artist);
+      const isFavorited =
+        favorites.albums.some((fav) => fav.title === album.title && fav.artist === album.artist) ||
+        favorites.tracks.some((fav) => fav.title === album.title && fav.artist === album.artist);
 
       // Set initial tooltip text
       tooltip.setAttribute("text", isFavorited ? "Remove from favorites" : `Add ${album.title} to favorites`);
@@ -86,7 +88,7 @@ class NewReleaseCard extends HTMLElement {
           <h3>${title}</h3>
           <p class="artist">${artist}</p>
           <p class="release-date">Released: ${releaseDate}</p>
-          <a href="${spotifyUrl}" target="_blank" rel="noopener noreferrer" class="spotify-link">
+          <a href="${spotifyUrl}" target="_blank" rel="noopener noreferrer" class="spotify-link" loading="lazy">
             <span class="spotify-link-text">Listen on Spotify</span>
             <i class="fa-brands fa-spotify spotify-link-icon"></i>
           </a>

@@ -10,7 +10,6 @@ class FavoriteButton extends HTMLElement {
   }
   setupEventListeners() {
     this.addEventListener("click", () => {
-      console.log("Favorite button clicked");
       this.dispatchEvent(
         new CustomEvent("modal-trigger", { bubbles: true, composed: true, detail: { modal: "app-favorites" } })
       );
