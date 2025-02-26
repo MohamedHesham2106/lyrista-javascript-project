@@ -14,7 +14,6 @@ class SearchButton extends HTMLElement {
 
   setupEventListeners() {
     this.addEventListener("click", () => {
-      console.log("search button clicked");
       this.dispatchEvent(
         new CustomEvent("modal-trigger", {
           bubbles: true,
@@ -27,7 +26,6 @@ class SearchButton extends HTMLElement {
     window.addEventListener("keydown", (event) => {
       if (event.ctrlKey && event.key == "k") {
         event.preventDefault();
-        console.log("search button clicked by ctrl and k");
         this.dispatchEvent(
           new CustomEvent("modal-trigger", {
             bubbles: true,
