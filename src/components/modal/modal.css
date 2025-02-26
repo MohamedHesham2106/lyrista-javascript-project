@@ -27,7 +27,11 @@
   box-shadow: var(--shadow-lg);
   transform: translateY(20px);
   transition: transform 0.3s ease;
-  overflow-y: auto;
+  overflow: auto;
+  scrollbar-width: none;
+}
+.modal-content::-webkit-scrollbar {
+  display: none;
 }
 .modal[open] .modal-content {
   transform: translateY(0);

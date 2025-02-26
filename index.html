@@ -5,20 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Music App</title>
     <link rel="stylesheet" href="global.css" />
-    <script src="./src/components/button/button.js" type="module"></script>
-    <script src="./src/components/input/input.js" type="module"></script>
-    <script src="./src/components/navbar/navbar.js" type="module"></script>
-    <script src="./src/components/favorite-button/favorite-button.js" type="module"></script>
-    <script src="./src/components/tooltip/tooltip.js" type="module"></script>
-    <script src="./src/components/modal/modal.js" type="module"></script>
-    <script src="./src/components/user-button/user-button.js" type="module"></script>
-    <script src="./src/components/search/search.js" type="module"></script>
-    <script src="./src/components/hero-section/hero-section.js" type="module"></script>
-    <script src="./src/components/new-release/new-release.js" type="module"></script>
-    <script src="./src/components/new-release/new-release-list.js" type="module"></script>
-    <script src="./src/components/new-release/new-release-card.js" type="module"></script>
-    <script src="./src/components/toast/toast.js" type="module"></script>
-    <script src="./src/components/search-result/search-form.js" type="module"></script>
+    <script type="module" src="./src/components/load-components.js"></script>
     <script src="https://kit.fontawesome.com/5aa7974f62.js" crossorigin="anonymous"></script>
   </head>
 
@@ -27,9 +14,7 @@
     <app-hero></app-hero>
     <app-new-release data-type="albums"></app-new-release>
     <app-new-release data-type="tracks"></app-new-release>
-    <app-modal>
-      <app-search-form></app-search-form>
-    </app-modal>
+    <app-modal> </app-modal>
     <app-favorite-button> </app-favorite-button>
   </body>
 </html>

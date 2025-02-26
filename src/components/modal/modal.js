@@ -14,7 +14,14 @@ class Modal extends HTMLElement {
   }
 
   setupEventListeners() {
-    document.addEventListener("modal-trigger", () => this.open());
+    document.addEventListener("modal-trigger", (event) => {
+      this.open();
+      if (event.detail.modal === "app-favorites") {
+        this.querySelector(".modal-body").innerHTML = "<app-favorites></app-favorites>";
+      } else {
+        this.querySelector(".modal-body").innerHTML = "<app-search-form></app-search-form>";
+      }
+    });
   }
 
   open() {
