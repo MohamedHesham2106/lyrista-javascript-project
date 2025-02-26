@@ -1,3 +1,4 @@
+import { useSearch } from "../../utils/search.module.js";
 class SearchForm extends HTMLElement {
   connectedCallback() {
     this.isDropdownOpen = false;
@@ -34,16 +35,20 @@ class SearchForm extends HTMLElement {
           <span> </span><span>t</span><span>u</span><span>n</span><span>e</span><span>?</span>
         </p>
       </div>
+        <app-search-output type="${this.selectedOption}" query="" ></app-search-output>
+  
     `;
   }
 
   setupEventListeners() {
+    const { debounce } = useSearch();
     const dropdownToggle = this.querySelector(".dropdown-toggle");
     const dropdownMenu = this.querySelector(".dropdown-menu");
     const dropdownItems = this.querySelectorAll(".dropdown-item");
     const selectedOptionSpan = this.querySelector(".selected-option");
     const searchInput = this.querySelector("#search-input");
     const placeholderContainer = this.querySelector(".placeholder-container");
+    const searchOutput = this.querySelector(".search-output-container");
 
     dropdownToggle.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -55,6 +60,7 @@ class SearchForm extends HTMLElement {
       item.addEventListener("click", () => {
         this.selectedOption = item.dataset.value;
         selectedOptionSpan.textContent = this.selectedOption;
+        searchOutput.setAttribute("type", this.selectedOption);
         this.isDropdownOpen = false;
         dropdownMenu.style.display = "none";
       });
@@ -65,16 +71,21 @@ class SearchForm extends HTMLElement {
       dropdownMenu.style.display = "none";
     });
 
-    // Show/hide placeholder and search results when typing
-    searchInput.addEventListener("input", () => {
-      if (searchInput.value.trim() !== "") {
-        placeholderContainer.style.display = "none";
-        this.showSearchResults();
-      } else {
-        placeholderContainer.style.display = "flex";
-        searchResults.innerHTML = "";
-      }
-    });
+    searchInput.addEventListener(
+      "input",
+      debounce(() => {
+        const query = searchInput.value.trim();
+        if (query !== "") {
+          searchOutput.style.display = "flex";
+          placeholderContainer.style.display = "none";
+          searchOutput.setAttribute("query", query);
+        } else {
+          searchOutput.style.display = "none";
+          placeholderContainer.style.display = "flex";
+          searchOutput.setAttribute("query", "");
+        }
+      }, 500)
+    );
   }
 }
 
