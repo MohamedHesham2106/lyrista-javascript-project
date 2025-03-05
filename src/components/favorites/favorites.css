@@ -1,0 +1,80 @@
+.tracks,
+.albums {
+  position: relative;
+  margin: 40px auto;
+  width: 250px;
+  height: 80%;
+}
+
+.text-tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  cursor: pointer;
+  left: 5px;
+  width: 100%;
+  height: 80%;
+}
+
+.text-tab:active {
+  background-color: #e0346a;
+  color: #eee;
+}
+
+.card-content {
+  position: relative;
+  display: block;
+  top: 160px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.albums .card-content {
+  overflow: hidden;
+  transform: translateX(200%);
+}
+
+.favorites-container {
+  padding: var(--spacing-4);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--gap-4);
+  margin-bottom: var(--spacing-6);
+}
+
+.tab-button {
+  padding: var(--spacing-2) var(--spacing-6);
+  border: none;
+  border-radius: var(--border-radius);
+  background: var(--color-neutral-800);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  background: var(--color-primary-500);
+}
+
+.hidden {
+  display: none;
+}
+
+.spotify-button {
+  background-color: var(--color-primary-500);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+  padding-left: 30px;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+}

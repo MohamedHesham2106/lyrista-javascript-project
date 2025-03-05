@@ -14,6 +14,7 @@ const components = [
   "./toast/toast.js",
   "./search-result/search-form.js",
   "./search-result/search-output.js",
+  "./favorites/favorites.js",
 ];
 
 components.forEach((component) => import(component));
