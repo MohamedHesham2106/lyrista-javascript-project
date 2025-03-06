@@ -1,15 +1,10 @@
 import { cookies } from "./cookies.module.js";
 
-// credentials: grant_type=client_credentials&client_id=390916c79d2a40aa885234bd29808c90&client_secret=d667bc3abef84153b5e4dfb29e759598
-// header=> Content-Type: application/x-www-form-urlencoded
-
 function useFetch() {
   const credentials = new URLSearchParams();
   credentials.append("grant_type", "client_credentials");
   credentials.append("client_id", "390916c79d2a40aa885234bd29808c90");
   credentials.append("client_secret", "d667bc3abef84153b5e4dfb29e759598");
-
-  const headerType = "Content-Type";
   const header = "application/x-www-form-urlencoded";
 
   async function getAccessToken() {
@@ -62,9 +57,7 @@ function useFetch() {
       if (!data.albums?.items) break;
 
       // Filter based on albumType
-      const filteredAlbums = data.albums.items.filter(
-        (album) => album.album_type === albumType
-      );
+      const filteredAlbums = data.albums.items.filter((album) => album.album_type === albumType);
       allAlbums.push(...filteredAlbums);
 
       if (data.albums.items.length < fetchLimit) break;
@@ -97,29 +90,21 @@ function useFetch() {
   };
 
   const getAlbum = async (albumName) => {
-    const response = await fetch(
-      `https://api.spotify.com/v1/albums/${albumName}`,
-      await option()
-    );
+    const response = await fetch(`https://api.spotify.com/v1/albums/${albumName}`, await option());
 
     const data = await response.json();
     return data;
   };
 
   const getTrack = async (trackName) => {
-    const response = await fetch(
-      `https://api.spotify.com/v1/tracks/${trackName}`,
-      await option()
-    );
+    const response = await fetch(`https://api.spotify.com/v1/tracks/${trackName}`, await option());
     const data = await response.json();
     return data;
   };
 
   const search = async (searchInput, type) => {
     const response = await fetch(
-      `https://api.spotify.com/v1/search?q=${encodeURIComponent(
-        searchInput
-      )}&type=${type.toLowerCase()}`,
+      `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchInput)}&type=${type.toLowerCase()}`,
       await option()
     );
     const data = await response.json();

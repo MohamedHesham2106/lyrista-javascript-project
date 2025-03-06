@@ -22,6 +22,7 @@
 @import url("./src/components/favorites/favorites.css");
 @import url("./src/components/loader/loader.css");
 @import url("./src/components/favorites/no-favorites.css");
+@import url("./src/components/footer/footer.css");
 
 :root {
   /* Color Palette */
@@ -199,9 +200,6 @@
   --z-auto: auto;
 }
 html {
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-padding-top: 50px;
   scroll-behavior: smooth;
 }
 *,
