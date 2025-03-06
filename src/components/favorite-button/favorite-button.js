@@ -9,6 +9,9 @@ class FavoriteButton extends HTMLElement {
     this.render();
   }
   setupEventListeners() {
+    document.addEventListener("user-logged-out", () => {
+      this.style.display = "none";
+    });
     this.addEventListener("click", () => {
       this.dispatchEvent(
         new CustomEvent("modal-trigger", {

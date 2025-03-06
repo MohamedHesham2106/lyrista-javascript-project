@@ -161,3 +161,10 @@
   outline: 2px solid var(--color-secondary-500);
   border-color: var(--color-primary-400);
 }
+.loading-container {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

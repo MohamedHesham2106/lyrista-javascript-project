@@ -14,6 +14,19 @@
   position: relative;
   box-shadow: var(--shadow-md);
 }
+.slider-container-loader {
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 500px;
+  width: 100%;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-md);
+}
 
 .slider {
   display: flex;

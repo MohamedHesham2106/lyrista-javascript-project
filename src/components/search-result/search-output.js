@@ -63,7 +63,12 @@ class SearchOutput extends HTMLElement {
     if (statusElement) {
       switch (this.status) {
         case "searching":
-          statusElement.textContent = `Searching for "${this.query}" in ${this.type}...`;
+          statusElement.innerHTML = `
+          <div class="loading-container">
+          <app-loader></app-loader> Searching for "${this.query}" in ${this.type}...
+          </div>
+          `;
+
           break;
         case "no-results":
           statusElement.textContent = `No results found for "${this.query}" in ${this.type}.`;

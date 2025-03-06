@@ -20,10 +20,7 @@ class UserButton extends HTMLElement {
     }
     if (menu) {
       window.addEventListener("click", (event) => {
-        if (
-          !menu.classList.contains("hidden") &&
-          !this.contains(event.target)
-        ) {
+        if (!menu.classList.contains("hidden") && !this.contains(event.target)) {
           menu.classList.add("hidden");
         }
       });
@@ -43,6 +40,7 @@ class UserButton extends HTMLElement {
         this.innerHTML = `
         <app-button label="Get Started"></app-button>
         `;
+        this.dispatchEvent(new CustomEvent("user-logged-out", { bubbles: true, composed: true }));
         this.setupEventListeners();
       });
     }

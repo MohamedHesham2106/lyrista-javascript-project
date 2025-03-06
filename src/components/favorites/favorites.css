@@ -10,7 +10,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   position: absolute;
   cursor: pointer;
   left: 5px;
@@ -53,7 +52,7 @@
   background: var(--color-neutral-800);
   color: var(--color-text-primary);
   cursor: pointer;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   transition: all 0.3s ease;
 }
 

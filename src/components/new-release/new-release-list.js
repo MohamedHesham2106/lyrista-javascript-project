@@ -43,7 +43,7 @@ class NewReleaseSlider extends HTMLElement {
 
   render() {
     if (this.isLoading) {
-      this.innerHTML = `<p class="loading">Loading...</p>`;
+      this.innerHTML = `<div class="slider-container-loader"><app-loader></app-loader></div>`;
       return;
     }
     this.innerHTML = `
