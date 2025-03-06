@@ -21,6 +21,8 @@ class Favorites extends HTMLElement {
         albumTab.classList.remove("active");
         tracksSection?.classList.remove("hidden");
         albumsSection?.classList.add("hidden");
+        const { getFavorites } = useFavorite();
+        this.setupFavoriteButtons(getFavorites().tracks, "tracks");
       });
 
       albumTab.addEventListener("click", () => {
@@ -28,12 +30,15 @@ class Favorites extends HTMLElement {
         trackTab.classList.remove("active");
         albumsSection?.classList.remove("hidden");
         tracksSection?.classList.add("hidden");
+        const { getFavorites } = useFavorite();
+        this.setupFavoriteButtons(getFavorites().albums, "albums");
       });
     }
   }
   setupFavoriteButtons(data, type) {
     const { getFavorites, removeFavorite } = useFavorite();
-    this.querySelectorAll(".fav-button").forEach((button, index) => {
+
+    this.querySelectorAll(".fav-button").forEach((button) => {
       const tooltip = button.parentElement;
       let favorites;
 
@@ -50,11 +55,15 @@ class Favorites extends HTMLElement {
       button.classList.add("active");
 
       button.addEventListener("click", () => {
-        const itemToRemove = data[index]; // Get the specific item
+        const id = button.getAttribute("data-id");
 
-        removeFavorite(type, itemToRemove); // Remove from storage
+        // Find and remove the correct item
+        const itemToRemove = data.find((item) => item.spotifyUrl === id);
+        if (!itemToRemove) return;
 
-        // Remove the item from the DOM
+        removeFavorite(type, itemToRemove);
+
+        // Remove from the DOM
         const resultItem = button.closest(".result-item");
         if (resultItem) {
           resultItem.remove();
@@ -62,9 +71,13 @@ class Favorites extends HTMLElement {
 
         this.showToast(`Removed "${itemToRemove.title}" from favorites`, "error");
 
-        // Hide the section if no items remain
-        if (this.querySelectorAll(".result-item").length === 0) {
-          this.querySelector(`.${type}-section`).innerHTML = "<p>No favorites yet</p>";
+        // Get the specific section
+        const section = this.querySelector(`.${type}-section`);
+        const remainingItems = section.querySelectorAll(".result-item").length;
+
+        // If no items remain, replace with app-nofavorite
+        if (remainingItems === 0) {
+          section.innerHTML = `<app-nofavorite></app-nofavorite>`;
         }
       });
     });
@@ -84,7 +97,7 @@ class Favorites extends HTMLElement {
       const favorites = getFavorites();
 
       if (!favorites.albums && !favorites.tracks) {
-        this.innerHTML = "<p>No favorites yet</p>";
+        this.innerHTML = "<app-nofavorite></app-nofavorite>";
         return;
       }
 
@@ -108,12 +121,12 @@ class Favorites extends HTMLElement {
       this.setupFavoriteButtons(favorites[activeTab], activeTab);
     } catch (error) {
       console.error("Error loading favorites:", error.message);
-      this.innerHTML = "<p>Error loading favorites</p>";
+      this.innerHTML = "<app-nofavorite></app-nofavorite>";
     }
   }
 
   renderSection(title, items) {
-    if (!items || items.length === 0) return "";
+    if (!items || items.length === 0) return `<app-nofavorite></app-nofavorite>`;
 
     return `
       <div class="results-container">
@@ -122,7 +135,7 @@ class Favorites extends HTMLElement {
             (item) => `
           <div class="result-item">
            <app-tooltip>
-                  <button class="fav-button">
+                  <button class="fav-button" data-id="${item.spotifyUrl}">
                   <i class="fa-solid fa-heart"></i>
              </button>
              </app-tooltip>

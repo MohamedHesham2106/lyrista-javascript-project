@@ -168,3 +168,96 @@
   justify-content: center;
   align-items: center;
 }
+/* Mobile Styles (up to 767px) */
+@media screen and (max-width: 767px) {
+  .search-output-container {
+    padding: 0 var(--spacing-2);
+  }
+
+  .results-container {
+    gap: var(--spacing-3);
+  }
+
+  .result-item {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: var(--spacing-2);
+    padding: var(--spacing-3);
+  }
+
+  .result-image {
+    width: 40px;
+    height: 40px;
+    grid-row: span 2;
+  }
+
+  .result-info {
+    grid-column: 2;
+  }
+
+  .fav-button {
+    grid-row: 1;
+    grid-column: 3;
+    padding: var(--spacing-1);
+    justify-self: end;
+  }
+
+  .fav-button i {
+    font-size: var(--font-size-lg);
+  }
+
+  .spotify-button {
+    grid-row: 2;
+    grid-column: 2 / span 2;
+    margin-top: var(--spacing-2);
+    padding: var(--spacing-2);
+    font-size: var(--font-size-xs);
+    width: 100%;
+  }
+
+  .result-name {
+    font-size: var(--font-size-xs);
+  }
+
+  .result-artist {
+    font-size: var(--font-size-xs);
+  }
+
+  .no-results {
+    font-size: var(--font-size-md);
+  }
+}
+
+/* Tablet Styles (768px to 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .search-output-container {
+    padding: 0 var(--spacing-3);
+  }
+
+  .results-container {
+    gap: var(--spacing-3);
+  }
+
+  .result-item {
+    grid-template-columns: auto auto 1fr auto;
+    column-gap: var(--spacing-3);
+    padding: var(--spacing-3);
+  }
+
+  .result-image {
+    width: 45px;
+    height: 45px;
+  }
+
+  .spotify-button {
+    font-size: var(--font-size-xs);
+  }
+
+  .fav-button {
+    padding: var(--spacing-1);
+  }
+
+  .fav-button i {
+    font-size: var(--font-size-lg);
+  }
+}

@@ -13,38 +13,62 @@
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
+
 .modal[open] {
   opacity: 1;
   visibility: visible;
 }
+
 .modal-content {
   color: var(--color-text-primary);
-  width: 800px;
-  aspect-ratio: 2 / 1;
+  width: 90%; /* Use percentage instead of fixed width */
+  max-width: 800px; /* Maximum width for larger screens */
+  max-height: 90vh; /* Prevent modal from being taller than viewport */
   background: var(--color-surface);
-  padding: var(--spacing-2) var(--spacing-8);
+  padding: var(--spacing-2);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-lg);
   transform: translateY(20px);
   transition: transform 0.3s ease;
   overflow: auto;
   scrollbar-width: none;
+  position: relative; /* For absolute positioning of close button */
 }
+
+/* Adjust padding for different screen sizes */
+@media (min-width: 640px) {
+  .modal-content {
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+}
+
+@media (min-width: 768px) {
+  .modal-content {
+    padding: var(--spacing-2) var(--spacing-8);
+    aspect-ratio: 2 / 1; /* Apply aspect ratio only on larger screens */
+  }
+}
+
 .modal-content::-webkit-scrollbar {
   display: none;
 }
+
 .modal[open] .modal-content {
   transform: translateY(0);
 }
+
 .close {
   cursor: pointer;
   font-size: var(--font-size-3xl);
   color: var(--color-text-primary);
   font-weight: bold;
   position: absolute;
-  top: 1%;
-  right: 2%;
-}
-.close:hover {
-  color: var(--color-text-secondary);
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1; /* Ensure it's above other content */
 }

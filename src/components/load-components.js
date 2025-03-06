@@ -15,6 +15,7 @@ const components = [
   "./search-result/search-form.js",
   "./search-result/search-output.js",
   "./favorites/favorites.js",
+  "./favorites/no-favorites.js",
   "./loader/loader.js",
 ];
 

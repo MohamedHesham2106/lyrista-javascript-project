@@ -21,6 +21,7 @@
 @import url("./src/components/search-result/search-output.css");
 @import url("./src/components/favorites/favorites.css");
 @import url("./src/components/loader/loader.css");
+@import url("./src/components/favorites/no-favorites.css");
 
 :root {
   /* Color Palette */

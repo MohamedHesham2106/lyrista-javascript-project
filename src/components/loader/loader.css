@@ -46,3 +46,9 @@
     background-position-y: 0;
   }
 }
+/* Mobile */
+@media (max-width: 767.98px) {
+  .loader {
+    font-size: var(--font-size-4xl);
+  }
+}
