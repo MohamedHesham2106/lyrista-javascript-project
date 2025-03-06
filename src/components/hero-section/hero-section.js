@@ -71,7 +71,7 @@ class Hero extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <section class="hero-section">
+      <section class="hero-section" id="hero">
         <div class="hero-content">
           <h1 class="hero-title">Lyrista - Your Personal Music Universe</h1>
           <p class="hero-text">

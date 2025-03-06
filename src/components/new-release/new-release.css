@@ -1,12 +1,9 @@
 .new-release-container {
   height: calc(100dvh - 50px);
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   padding: var(--spacing-6);
 }
 
@@ -28,4 +25,14 @@
   transform: skew(-30deg) translateX(-50%);
   background: var(--gradient-accent);
   z-index: -1;
+}
+/* Mobile */
+@media (max-width: 768px) {
+  .new-release-container h2 {
+    font-size: var(--font-size-4xl);
+  }
+  .new-release-container h2::before {
+    bottom: 5px;
+    height: 10px;
+  }
 }

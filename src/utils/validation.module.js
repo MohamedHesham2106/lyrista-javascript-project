@@ -5,7 +5,6 @@ const validation = {
 
 function validateCredentials({ username, password }) {
   const errors = {};
-  console.log(username, password);
   if (!validation.isUsernameValid(username)) {
     errors.username =
       "Username must be 8-32 characters long and contain one uppercase letter, one lowercase letter, one number, and one special character.";

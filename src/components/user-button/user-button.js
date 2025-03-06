@@ -9,6 +9,12 @@ class UserButton extends HTMLElement {
   connectedCallback() {
     this.setupEventListeners();
   }
+  disconnectedCallback() {
+    this.querySelector(".fa-circle-user")?.removeEventListener("click", this.toggleMenu);
+    window.removeEventListener("click", this.windowClickListener);
+    this.querySelector("app-button")?.removeEventListener("click", this.redirectToAuth);
+    this.querySelector(".log-out")?.removeEventListener("click", this.handleLogout.bind(this));
+  }
 
   setupEventListeners() {
     this.querySelector(".fa-circle-user")?.addEventListener("click", () => {

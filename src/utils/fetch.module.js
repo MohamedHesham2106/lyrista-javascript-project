@@ -128,15 +128,5 @@ function useFetch() {
 
   return { getNewReleases, getAlbum, getTrack, search, getNewReleasesTracks };
 }
-async function testCookies() {
-  const cookieManager = cookies();
 
-  // Set a cookie
-  cookieManager.setCookie("test_key", "test_value");
-
-  // Get a cookie
-  const value = await cookieManager.getCookie("test_key");
-  console.log("Retrieved cookie value:", value);
-}
-// testCookies();
 export { useFetch };

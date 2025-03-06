@@ -8,7 +8,10 @@ class CD extends HTMLElement {
     this.render();
     this.setupEventListeners();
   }
-
+  disconnectedCallback() {
+    this.querySelector(".cd-sleeve").removeEventListener("click", this.toggleState);
+    this.querySelector(".cd").removeEventListener("click", this.changeForm);
+  }
   setupEventListeners() {
     this.querySelector(".cd-sleeve").addEventListener("click", this.toggleState);
     this.querySelector(".cd").addEventListener("click", (event) => {

@@ -10,6 +10,15 @@ class Navbar extends HTMLElement {
     this.render();
     this.setupEventListeners();
   }
+  disconnectedCallback() {
+    window.removeEventListener("scroll", this.handleScroll);
+    document.removeEventListener("click", this.handleDocumentClick);
+    const hamburger = this.querySelector(".hamburger-menu");
+    if (hamburger) {
+      hamburger.removeEventListener("click", this.toggleMenu);
+    }
+  }
+
 
   setupEventListeners() {
     // Scroll event for scrolled class
@@ -69,7 +78,7 @@ class Navbar extends HTMLElement {
     this.header.innerHTML = `
       <nav class="navbar">
         <app-tooltip side="bottom" text="Welcome To Lyrista">
-          <a href="/" class="logo">Lyrista</a>
+          <a href="${location.pathname.includes("Authentication") ? "/" : "#"}" class="logo">Lyrista</a>
         </app-tooltip>
         <ul class="nav-list">
           <li class="nav-item">

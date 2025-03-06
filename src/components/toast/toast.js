@@ -17,11 +17,15 @@ class Toast extends HTMLElement {
   }
 
   connectedCallback() {
+    this.removeExistingToasts();
     this.render();
     this.setupEventListeners();
     this.autoRemove();
   }
-
+  disconnectedCallback() {
+    this.querySelector(".toast-close").removeEventListener("click", this.removeToast);
+    clearTimeout(this.timeoutId);
+  }
   setupEventListeners() {
     this.querySelector(".toast-close").addEventListener("click", () => {
       this.removeToast();
@@ -36,8 +40,18 @@ class Toast extends HTMLElement {
 
   removeToast() {
     this.style.animation = "fadeOut 0.5s ease forwards";
-    setTimeout(() => this.remove(), 5000);
+    setTimeout(() => this.remove(), 500);
   }
+  // remove all existing toasts before showing the
+  removeExistingToasts() {
+    const existingToasts = document.querySelectorAll("app-toast-message");
+    existingToasts.forEach((toast) => {
+      if (toast !== this) {
+        toast.removeToast();
+      }
+    });
+  }
+
   render() {
     this.innerHTML = `
       <div class="toast toast-${this.type}">

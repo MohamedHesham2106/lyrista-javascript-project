@@ -58,6 +58,14 @@ class Form extends HTMLElement {
 
   disconnectedCallback() {
     document.removeEventListener("toggle-form", this.toggleForm);
+    const form = this.querySelector("form");
+    if (form) {
+      form.removeEventListener("submit", this.handleSubmit);
+    }
+    const formLink = this.querySelector(".form-link");
+    if (formLink) {
+      formLink.removeEventListener("click", this.toggleForm);
+    }
   }
 
   toggleForm = () => {
@@ -82,9 +90,9 @@ class Form extends HTMLElement {
           <app-input type="text" name="username" labelText="Username" required></app-input>
           <app-input type="password" name="password" labelText="Password" required></app-input>
         </div>
-       
+
         <app-button type="submit" label="${type === "login" ? "Login" : "Register"}"></app-button>
-     
+
         <p class="form-link">${
           type === "register"
             ? "Already have an account? <a>Login here.</a>"

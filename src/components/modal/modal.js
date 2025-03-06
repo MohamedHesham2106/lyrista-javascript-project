@@ -1,7 +1,6 @@
 class Modal extends HTMLElement {
   constructor() {
     super();
-    this.isOpen = false;
     this.render();
   }
 
@@ -32,7 +31,7 @@ class Modal extends HTMLElement {
   }
 
   close() {
-    this.isOpen = false;
+    
     this.querySelector(".modal").removeAttribute("open");
   }
 

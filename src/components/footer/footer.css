@@ -1,0 +1,62 @@
+.lyrista-footer {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-surface);
+  color: #ffffff;
+  padding: 2rem;
+  margin: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--border-radius-lg);
+}
+
+.lyrista-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.lyrista-footer-logo h2 {
+  font-size: var(--font-size-5xl);
+  font-family: var(--font-family-serif);
+  margin: 0;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 1px;
+}
+
+.lyrista-footer-tagline {
+  font-size: 1rem;
+  margin: var(--spacing-2) 0 0;
+  opacity: 0.8;
+}
+
+.lyrista-footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-1);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  padding-top: 1.5rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.lyrista-copyright,
+.lyrista-credits {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  opacity: 0.7;
+}
+
+.lyrista-credits span {
+  font-family: var(--font-family-serif);
+  color: var(--color-secondary-500);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .lyrista-footer {
+    padding: 1.5rem;
+  }
+}

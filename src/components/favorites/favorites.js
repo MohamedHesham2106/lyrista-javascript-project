@@ -8,6 +8,10 @@ class Favorites extends HTMLElement {
     this.render();
     this.setupTabs();
   }
+  disconnectedCallback() {
+    this.querySelector(".track-tab")?.removeEventListener("click", this.handleTrackTabClick);
+    this.querySelector(".album-tab")?.removeEventListener("click", this.handleAlbumTabClick);
+  }
 
   setupTabs() {
     const trackTab = this.querySelector(".track-tab");

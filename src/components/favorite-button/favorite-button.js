@@ -8,6 +8,10 @@ class FavoriteButton extends HTMLElement {
     this.setupEventListeners();
     this.render();
   }
+  disconnectedCallback() {
+    document.removeEventListener("user-logged-out", this.handleUserLoggedOut);
+    this.removeEventListener("click", this.handleClick);
+  }
   setupEventListeners() {
     document.addEventListener("user-logged-out", () => {
       this.style.display = "none";
