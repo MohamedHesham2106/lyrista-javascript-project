@@ -98,7 +98,7 @@
   }
 
   .slider-button {
-    height: 20%;
+    width: 5%;
     font-size: var(--font-size-sm);
   }
 }
@@ -114,7 +114,7 @@
   }
 
   .slider-button {
-    height: 15%;
+    height: 50%;
     font-size: var(--font-size-xs);
   }
 }
@@ -131,7 +131,7 @@
   }
 
   .slider-button {
-    height: 10%;
+    height: 40%;
     font-size: var(--font-size-xxs);
     padding: var(--spacing-0.5);
   }

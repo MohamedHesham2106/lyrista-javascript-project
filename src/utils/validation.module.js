@@ -6,12 +6,12 @@ const validation = {
 function validateCredentials({ username, password }) {
   const errors = {};
   if (!validation.isUsernameValid(username)) {
-    errors.username =
-      "Username must be 8-32 characters long and contain one uppercase letter, one lowercase letter, one number, and one special character.";
+    errors.username = "Username must be 8-30 characters long and can only contain letters, numbers and underscores.";
   }
 
   if (!validation.isPasswordValid(password)) {
-    errors.password = "Password must be 6-30 characters long, containing at least one letter and one number.";
+    errors.password =
+      "Password must be 8-32 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.";
   }
 
   return Object.keys(errors).length ? errors : null;

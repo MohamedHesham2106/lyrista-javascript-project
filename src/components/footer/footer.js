@@ -15,7 +15,6 @@ class LyristaFooter extends HTMLElement {
         </div>
       </footer>
     `;
-    this.setupScroll();
   }
 }
 

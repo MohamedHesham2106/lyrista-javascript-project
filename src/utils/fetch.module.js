@@ -108,6 +108,21 @@ function useFetch() {
       await option()
     );
     const data = await response.json();
+
+    // Ensure the type key exists before accessing `items`
+    const typeKey = `${type.toLowerCase()}s`;
+    if (!data[typeKey] || !Array.isArray(data[typeKey].items)) {
+      return data; // Return the original data structure
+    }
+
+    // Filtering logic
+    if (type.toLowerCase() === "album") {
+      // Only include full albums (exclude singles and compilations)
+      data[typeKey].items = data[typeKey].items.filter((item) => item.album_type === "album");
+    } else if (type.toLowerCase() === "track") {
+      // Only include tracks that come from a single album (exclude from full albums)
+      data[typeKey].items = data[typeKey].items.filter((item) => item.album?.album_type === "single");
+    }
     return data;
   };
 

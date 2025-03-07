@@ -18,6 +18,7 @@ const components = [
   "./favorites/no-favorites.js",
   "./loader/loader.js",
   "./footer/footer.js",
+  "./entrance/entrance.js",
 ];
 
 components.forEach((component) => import(component));

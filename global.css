@@ -23,6 +23,7 @@
 @import url("./src/components/loader/loader.css");
 @import url("./src/components/favorites/no-favorites.css");
 @import url("./src/components/footer/footer.css");
+@import url("./src/components/entrance/entrance.css");
 
 :root {
   /* Color Palette */
@@ -219,6 +220,11 @@ body {
   background-color: var(--color-background);
   min-height: 100dvh;
 }
+main {
+  display: none;
+  opacity: 0;
+}
+
 .hidden {
   display: none;
 }

@@ -1,0 +1,153 @@
+app-entrance {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.entrance-container {
+  text-align: center;
+  color: white;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 20px;
+}
+
+.entrance-text {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-serif);
+  margin-bottom: var(--spacing-4);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  margin: 0 2px;
+}
+
+.letter.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.entrance-progress {
+  height: 4px;
+  width: 0;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+  margin: 0 auto 1.5rem;
+  max-width: 350px;
+  transition: width 0.2s ease-out;
+  position: relative;
+}
+
+.entrance-subtitle {
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.entrance-subtitle.visible {
+  opacity: 0.8;
+}
+
+.notes-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.notes {
+  position: absolute;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: center;
+  transform: scale(var(--size, 1)) rotate(0deg);
+  will-change: transform, opacity;
+  animation: flame-rise 2s ease-out forwards;
+}
+
+.notes.primary {
+  color: var(--color-primary-500);
+}
+
+.notes.secondary {
+  color: var(--color-secondary-500);
+}
+
+@keyframes flame-rise {
+  0% {
+    transform: scale(var(--size, 1)) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    /* Move upward with some horizontal spread */
+    transform: translate(calc(var(--h-spread, 0) * 1vw), calc(var(--v-distance, -20) * 1%)) scale(var(--size, 1))
+      rotate(calc(var(--h-spread, 0) * 5deg));
+    opacity: 0;
+  }
+}
+.notes.primary {
+  text-shadow: 0 0 8px var(--color-primary-500);
+}
+
+.notes.secondary {
+  text-shadow: 0 0 8px var(--color-secondary-500);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .entrance-text {
+    margin-bottom: 1rem;
+  }
+
+  .entrance-progress {
+    margin-bottom: 1rem;
+    max-width: 80%;
+  }
+
+  @keyframes flame-rise {
+    0% {
+      transform: scale(var(--size, 1)) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.7;
+    }
+    40% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(calc(var(--h-spread, 0) * 0.8vw), calc(var(--v-distance, -20) * 1%)) scale(var(--size, 1))
+        rotate(calc(var(--h-spread, 0) * 4deg));
+      opacity: 0;
+    }
+  }
+}

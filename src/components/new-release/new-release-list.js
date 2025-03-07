@@ -12,6 +12,7 @@ class NewReleaseSlider extends HTMLElement {
     this.currentIndex = 0;
     this.autoScrollInterval = null;
     this.dataType = this.getAttribute("data-type") || "albums";
+    this.visibleCards = 4;
   }
 
   async connectedCallback() {
@@ -82,35 +83,64 @@ class NewReleaseSlider extends HTMLElement {
       sliderContainer.addEventListener("mouseenter", () => this.stopAutoScroll());
       sliderContainer.addEventListener("mouseleave", () => this.startAutoScroll());
 
-      setTimeout(() => {
-        const card = this.slider.querySelector("app-new-release-card");
-        if (card) {
-          this.slideWidth = card.offsetWidth + parseInt(getComputedStyle(this.slider).gap, 10);
-        }
-      }, 100);
+      // ResizeObserver to adjust slide width & visible cards dynamically
+      const observer = new ResizeObserver(() => this.updateSliderSettings());
+      observer.observe(this);
+      // Initial call to set values
+      this.updateSliderSettings();
     }
+  }
+
+  updateSliderSettings() {
+    const card = this.slider.querySelector("app-new-release-card");
+    if (!card) return;
+
+    const containerWidth = this.clientWidth;
+
+    // responsive visible cards
+    if (containerWidth >= 1200) {
+      this.visibleCards = 4;
+    } else if (containerWidth >= 900) {
+      this.visibleCards = 3;
+    } else if (containerWidth >= 600) {
+      this.visibleCards = 2;
+    } else {
+      this.visibleCards = 1;
+    }
+
+    // Update slide width
+    this.slideWidth = card.offsetWidth + parseInt(getComputedStyle(this.slider).gap, 10);
   }
 
   scroll(direction) {
     if (!this.slider || this.slideWidth === 0) return;
-    this.currentIndex += direction;
 
-    if (this.currentIndex >= this.data.length) {
+    const slidesToMove = this.visibleCards;
+    const totalSlides = this.data.length;
+    const maxIndex = totalSlides - this.visibleCards;
+
+    this.currentIndex += direction * slidesToMove;
+
+    if (this.currentIndex > maxIndex) {
+      // Go back to the start
       this.currentIndex = 0;
     } else if (this.currentIndex < 0) {
-      this.currentIndex = this.data.length - 1;
+      // Jump to the last batch
+      this.currentIndex = maxIndex;
     }
 
+    this.slider.style.transition = "transform 0.5s ease-in-out";
     this.slider.style.transform = `translateX(-${this.currentIndex * this.slideWidth}px)`;
   }
 
   startAutoScroll() {
     this.stopAutoScroll();
     this.autoScrollInterval = setInterval(() => {
-      if (this.currentIndex < this.data.length - 1) {
+      if (this.currentIndex < this.data.length - this.visibleCards) {
         this.scroll(1);
       } else {
-        this.currentIndex = -1;
+        // Go back to the start
+        this.currentIndex = -this.visibleCards;
         this.scroll(1);
       }
     }, 3000);
