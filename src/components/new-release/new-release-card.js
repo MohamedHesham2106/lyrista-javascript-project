@@ -17,6 +17,13 @@ class NewReleaseCard extends HTMLElement {
     const favoriteButton = this.querySelector(".favorite-button");
     const tooltip = this.querySelector("app-tooltip");
     if (!favoriteButton || !tooltip) return;
+    // redirect to login page if user is not logged in
+    document.addEventListener("user-logged-out", () => {
+      favoriteButton.addEventListener("click", () => {
+        window.location.href = "./src/pages/Authentication/index.html";
+      });
+      tooltip.setAttribute("text", "Login to add to favorites");
+    });
     if (!isLoggedIn()) {
       favoriteButton.addEventListener("click", () => {
         window.location.href = "./src/pages/Authentication/index.html";
