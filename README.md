@@ -9,6 +9,7 @@ Lyrista is a music streaming platform that allows users to register/login to the
 - [Installation](#installation) ⚙️
 - [Usage](#usage) 📖
 - [Credits](#credits) 🙌
+- [Demo](#demo) 🎬
 
 ## Features 🎵
 
@@ -71,3 +72,8 @@ cd lyrista-javascript-project
 ## Credits 🙌
 
 This project was developed by [Mohamed Hesham](https://github.com/MohamedHesham2106) and [Islam Tarek](https://github.com/Islam-Tarek).
+
+
+## Demo 🎬
+
+To see a demo of Lyrista, visit the [Lyrista Demo](https://drive.google.com/file/d/1Acam-jXqPjR5wRgeaYtMzf_0M6dXYCgH/view?usp=drive_link)
