@@ -3,8 +3,8 @@ import { cookies } from "./cookies.module.js";
 function useFetch() {
   const credentials = new URLSearchParams();
   credentials.append("grant_type", "client_credentials");
-  credentials.append("client_id", "390916c79d2a40aa885234bd29808c90");
-  credentials.append("client_secret", "d667bc3abef84153b5e4dfb29e759598");
+  credentials.append("client_id", "d95152d017084f1d9b7bf74d088b11d8");
+  credentials.append("client_secret", "bbcdc711bc884149adc36bbc8a86651c");
   const header = "application/x-www-form-urlencoded";
 
   async function getAccessToken() {
@@ -38,7 +38,7 @@ function useFetch() {
     cookies().setCookie("access_token", data.access_token);
     return data.access_token;
   }
-  const getNewReleases = async (albumType = "album", limit = 150) => {
+  const getNewReleases = async (albumType = "album", limit = 150, country = "US") => {
     const allAlbums = [];
     let offset = 0;
     const maxLimit = 50;
@@ -48,7 +48,7 @@ function useFetch() {
       const fetchLimit = remaining > maxLimit ? maxLimit : remaining;
 
       const response = await fetch(
-        `https://api.spotify.com/v1/browse/new-releases?limit=${fetchLimit}&offset=${offset}`,
+        `https://api.spotify.com/v1/browse/new-releases?limit=${fetchLimit}&offset=${offset}&country=${country}`,
         await option()
       );
 
@@ -102,12 +102,16 @@ function useFetch() {
     return data;
   };
 
-  const search = async (searchInput, type) => {
+  const search = async (searchInput, type, limit, raw = false) => {
     const response = await fetch(
-      `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchInput)}&type=${type.toLowerCase()}`,
+      `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchInput)}&type=${type.toLowerCase()}${
+        limit ? `&limit=${limit}` : ""
+      }`,
       await option()
     );
     const data = await response.json();
+
+    if (raw) return data; // Return the original data if raw flag is true
 
     // Ensure the type key exists before accessing `items`
     const typeKey = `${type.toLowerCase()}s`;
@@ -117,16 +121,15 @@ function useFetch() {
 
     // Filtering logic
     if (type.toLowerCase() === "album") {
-      // Only include full albums (exclude singles and compilations)
       data[typeKey].items = data[typeKey].items.filter((item) => item.album_type === "album");
     } else if (type.toLowerCase() === "track") {
-      // Only include tracks that come from a single album (exclude from full albums)
       data[typeKey].items = data[typeKey].items.filter((item) => item.album?.album_type === "single");
     }
+
     return data;
   };
 
-  return { getNewReleases, getAlbum, getTrack, search, getNewReleasesTracks };
+  return { getNewReleases, getAlbum, getTrack, search, getNewReleasesTracks, getAccessToken };
 }
 
 export { useFetch };

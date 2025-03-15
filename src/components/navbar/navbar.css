@@ -5,6 +5,7 @@ header {
   max-height: 4rem;
   padding: var(--spacing-4) var(--spacing-6);
   position: fixed;
+  top: 0;
   width: 100%;
   z-index: var(--z-50);
   transition: background 0.3s ease, box-shadow 0.3s ease;

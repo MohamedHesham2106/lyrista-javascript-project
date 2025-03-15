@@ -6,6 +6,7 @@ class NewReleaseCard extends HTMLElement {
     super();
     this.dataType = this.getAttribute("data-type") || "albums";
     this.classList.add("new-release-card");
+    this.auth = useAuthentication(); // Initialize auth here
   }
 
   connectedCallback() {
@@ -13,7 +14,7 @@ class NewReleaseCard extends HTMLElement {
   }
 
   setupEventListeners() {
-    const { isLoggedIn } = useAuthentication();
+    const { isLoggedIn } = this.auth;
     const favoriteButton = this.querySelector(".favorite-button");
     const tooltip = this.querySelector("app-tooltip");
     if (!favoriteButton || !tooltip) return;
@@ -85,22 +86,31 @@ class NewReleaseCard extends HTMLElement {
 
     this.innerHTML = `
       <div class="card">
-        <app-tooltip>
-          <button class="favorite-button">
-            <i class="fa-solid fa-heart"></i>
-          </button>
-        </app-tooltip>
-        <img src="${image}" alt="${title} by ${artist}">
-        <div class="content">
-          <h3>${title}</h3>
-          <p class="artist">${artist}</p>
-          <p class="release-date">Released: ${releaseDate}</p>
-          <a href="${spotifyUrl}" target="_blank" rel="noopener noreferrer" class="spotify-link" loading="lazy">
-            <span class="spotify-link-text">Listen on Spotify</span>
-            <i class="fa-brands fa-spotify spotify-link-icon"></i>
-          </a>
-        </div>
-      </div>
+  <app-tooltip>
+    <button class="favorite-button">
+      <i class="fa-solid fa-heart"></i>
+    </button>
+  </app-tooltip>
+  <img src="${image}" alt="${title} by ${artist}">
+  <div class="content">
+    <h3>${title}</h3>
+    <p class="artist">${artist}</p>
+    <p class="release-date">Released: ${releaseDate}</p>
+    <div class="buttons-container">
+      <a href="${spotifyUrl}" target="_blank" rel="noopener noreferrer" class="spotify-link" loading="lazy">
+  <span class="spotify-link-text">Listen on Spotify</span>
+  <i class="fa-brands fa-spotify spotify-link-icon"></i>
+</a>
+<a href="/src/pages/Lyrics/index.html?artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(
+      title.replace(/\s*$$[^)]*$$/g, "")
+    )}" target="_blank" rel="noopener noreferrer" class="lyrics-link" loading="lazy">
+  <span class="lyrics-link-text">View Song Lyrics</span>
+  <i class="fa-solid fa-music lyrics-link-icon"></i>
+</a>
+
+    </div>
+  </div>
+</div>
     `;
     this.setupEventListeners();
   }

@@ -24,6 +24,7 @@
 @import url("./src/components/favorites/no-favorites.css");
 @import url("./src/components/footer/footer.css");
 @import url("./src/components/entrance/entrance.css");
+@import url("./src/components/lyrics/lyrics.css");
 
 :root {
   /* Color Palette */

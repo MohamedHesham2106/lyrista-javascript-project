@@ -19,6 +19,7 @@ const components = [
   "./loader/loader.js",
   "./footer/footer.js",
   "./entrance/entrance.js",
+  "./lyrics/lyrics.js",
 ];
 
 components.forEach((component) => import(component));

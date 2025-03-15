@@ -9,6 +9,7 @@ class SearchOutput extends HTMLElement {
     this.query = this.getAttribute("query");
     this.classList.add("search-output-container");
     this.status = "idle";
+    this.auth = useAuthentication(); // Initialize auth here
   }
 
   static get observedAttributes() {
@@ -24,7 +25,7 @@ class SearchOutput extends HTMLElement {
       }
     }
   }
-  // Fetch user input
+
   async fetchUserInput(query) {
     if (!query) return;
 
@@ -39,14 +40,13 @@ class SearchOutput extends HTMLElement {
       const typeKey = this.type.toLowerCase() + "s";
       const results = response[typeKey]?.items || [];
 
-      // check if the response is an array
       if (!Array.isArray(results)) {
         console.error("Unexpected response structure:", response);
         this.status = "error";
         this.updateStatus();
         return;
       }
-      // make sure the item has a name
+
       const filteredResults = results.filter((item) => item.name);
 
       this.status = filteredResults.length > 0 ? "results" : "no-results";
@@ -68,7 +68,6 @@ class SearchOutput extends HTMLElement {
           <app-loader></app-loader> Searching for "${this.query}" in ${this.type}...
           </div>
           `;
-
           break;
         case "no-results":
           statusElement.textContent = `No results found for "${this.query}" in ${this.type}.`;
@@ -101,23 +100,38 @@ class SearchOutput extends HTMLElement {
                 ? item.album?.external_urls?.spotify || "#"
                 : item.external_urls?.spotify || "#";
 
+            const trackName = item.name || "Unknown Track";
+            const lyricsUrl = `/src/pages/Lyrics/index.html?artist=${encodeURIComponent(
+              artistName
+            )}&track=${encodeURIComponent(trackName.replace(/\s*$$[^)]*$$/g, ""))}`;
+
             return `
-              <div class="result-item">
-                <app-tooltip>
-                  <button class="fav-button">
-                    <i class="fa-solid fa-heart"></i>
-                  </button>
-                </app-tooltip>
-                <img src="${imageUrl}" alt="${item.name}" class="result-image" loading="lazy">
-                <div class="result-info">
-                  <h3 class="result-name">${item.name}</h3>
-                  <p class="result-artist">${artistName}</p>
-                </div>
-                <a href="${spotifyUrl}" target="_blank" class="spotify-button">
-                  <span class="spotify-button-text">Listen on Spotify</span>
-                  <i class="fa-brands fa-spotify spotify-button-icon"></i>
-                </a>
-              </div>
+              <div class="search-result-item">
+  <div class="search-result-content">
+    <img src="${imageUrl}" alt="${item.name}" class="search-result-image" loading="lazy">
+    <div class="search-result-info">
+      <h3 class="search-result-name">${item.name}</h3>
+      <p class="search-result-artist">${artistName}</p>
+    </div>
+    <div class="search-fav-button-container">
+      <app-tooltip>
+        <button class="search-fav-button">
+          <i class="fa-solid fa-heart"></i>
+        </button>
+      </app-tooltip>
+    </div>
+  </div>
+  <div class="button-container">
+    <a href="${spotifyUrl}" target="_blank" class="spotify-button">
+      <span class="spotify-button-text">Listen</span>
+      <i class="fa-brands fa-spotify spotify-button-icon"></i>
+    </a>
+    <a href="${lyricsUrl}" target="_blank" class="lyrics-button">
+      <span class="lyrics-button-text">Lyrics</span>
+      <i class="fa-solid fa-music lyrics-button-icon"></i>
+    </a>
+  </div>
+</div>
             `;
           })
           .join("")}
@@ -128,32 +142,32 @@ class SearchOutput extends HTMLElement {
   }
 
   setupFavoriteButtons(data) {
-    const { isLoggedIn } = useAuthentication();
+    const { isLoggedIn } = this.auth;
     const { addFavorite, getFavorites, removeFavorite } = useFavorite();
     const type = this.type.toLowerCase() + "s";
 
-    this.querySelectorAll(".fav-button").forEach((button, index) => {
+    // Use the updated class name: .search-fav-button
+    this.querySelectorAll(".search-fav-button").forEach((button, index) => {
       const item = data[index];
-      const tooltip = button.parentElement;
+      const tooltip = button.closest("app-tooltip"); // Get the closest app-tooltip element
 
       if (!isLoggedIn()) {
         button.addEventListener("click", () => {
           window.location.href = "./src/pages/Authentication/index.html";
         });
-        tooltip.setAttribute("text", "Login to add to favorites");
+        if (tooltip) {
+          tooltip.setAttribute("text", "Login to add to favorites");
+        }
       } else {
         let favorites;
         try {
           favorites = getFavorites();
         } catch (error) {
           console.error("Error fetching favorites:", error.message);
-          // Default empty state
           favorites = { albums: [], tracks: [] };
         }
-        // Ensure type exists in favorites
         if (!favorites[type]) favorites[type] = [];
 
-        // Create favorite item
         const favoriteItem = {
           title: item.name,
           artist: item.artists?.[0]?.name || "Unknown Artist",
@@ -162,14 +176,17 @@ class SearchOutput extends HTMLElement {
           spotifyUrl: item.external_urls?.spotify || "#",
         };
 
-        // Check if the item is already favorited
         const isFavorited = favorites[type].some(
           (fav) => fav.title === favoriteItem.title && fav.artist === favoriteItem.artist
         );
 
-        tooltip.setAttribute("text", isFavorited ? "Remove from favorites" : `Add ${favoriteItem.title} to favorites`);
+        if (tooltip) {
+          tooltip.setAttribute(
+            "text",
+            isFavorited ? "Remove from favorites" : `Add ${favoriteItem.title} to favorites`
+          );
+        }
 
-        // add class to button if item is already favorited
         if (isFavorited) {
           button.classList.add("active");
         }
@@ -178,12 +195,16 @@ class SearchOutput extends HTMLElement {
           if (button.classList.contains("active")) {
             removeFavorite(type, favoriteItem);
             button.classList.remove("active");
-            tooltip.setAttribute("text", `Add ${favoriteItem.title} to favorites`);
+            if (tooltip) {
+              tooltip.setAttribute("text", `Add ${favoriteItem.title} to favorites`);
+            }
             this.showToast(`Removed "${favoriteItem.title}" from favorites`, "error");
           } else {
             addFavorite(type, favoriteItem);
             button.classList.add("active");
-            tooltip.setAttribute("text", "Remove from favorites");
+            if (tooltip) {
+              tooltip.setAttribute("text", "Remove from favorites");
+            }
             this.showToast(`Added "${favoriteItem.title}" to favorites`, "success");
           }
         });

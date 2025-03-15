@@ -1,0 +1,204 @@
+.lyrics-container {
+  background-color: var(--color-neutral-50);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-6);
+  max-width: 1200px;
+  margin: var(--spacing-20) auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.player-container {
+  width: 100%;
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-4);
+  color: var(--color-text-primary);
+  height: fit-content;
+  display: flex;
+  place-self: start;
+  flex-direction: column;
+  flex: 1;
+}
+
+.player-container iframe {
+  width: 100%;
+  border-radius: var(--border-radius);
+}
+
+.lyrics-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  max-height: 60vh;
+}
+
+.lyrics-notes {
+  background-color: var(--color-neutral-100);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-4);
+  font-size: var(--font-size-base);
+  color: var(--color-neutral-600);
+  margin-top: var(--spacing-2);
+  font-weight: var(--font-weight-medium);
+}
+
+.lyrics-header {
+  border-bottom: 1px solid var(--color-neutral-200);
+  padding-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-5);
+}
+
+.lyrics-title {
+  font-size: var(--font-size-2xl);
+  margin: 0;
+  color: var(--color-neutral-900);
+  font-weight: var(--font-weight-bold);
+}
+
+.lyrics-artist {
+  font-size: var(--font-size-lg);
+  margin: var(--spacing-1) 0 0;
+  color: var(--color-neutral-600);
+}
+
+.lyrics-content {
+  overflow-y: auto;
+  height: 100%;
+  padding-right: var(--spacing-4);
+  scroll-behavior: smooth;
+}
+
+.lyrics-line {
+  margin-bottom: var(--spacing-3);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: var(--color-neutral-900);
+  opacity: 0.7;
+  display: flex;
+  align-items: flex-start;
+}
+
+.lyrics-line:hover {
+  background-color: rgba(255, 77, 141, 0.1);
+  opacity: 0.9;
+}
+
+.lyrics-line.active {
+  background-color: rgba(255, 77, 141, 0.2);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-600);
+  transform: translateX(var(--spacing-1));
+  opacity: 1;
+}
+
+.lyrics-timestamp {
+  color: var(--color-primary-600);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-mono);
+  margin-right: var(--spacing-3);
+  opacity: 0.8;
+  flex-shrink: 0;
+  padding-top: var(--spacing-px);
+}
+
+.lyrics-text {
+  flex: 1;
+}
+
+.lyrics-content::-webkit-scrollbar {
+  width: var(--spacing-1);
+}
+
+.lyrics-content::-webkit-scrollbar-track {
+  background: var(--color-neutral-100);
+  border-radius: var(--border-radius-lg);
+}
+
+.lyrics-content::-webkit-scrollbar-thumb {
+  background: var(--color-primary-600);
+  border-radius: var(--border-radius-lg);
+}
+
+.lyrics-content::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-700);
+}
+
+.loading,
+.error {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  padding: var(--spacing-5);
+  text-align: center;
+}
+
+.error {
+  color: var(--color-error);
+}
+
+.spotify-error {
+  text-align: center;
+  padding: var(--spacing-4);
+}
+
+.spotify-error button {
+  background: var(--color-primary-600);
+  color: var(--color-text-primary);
+  border: none;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  margin-top: var(--spacing-2);
+}
+
+.spotify-error button:hover {
+  background: var(--color-primary-700);
+}
+
+@media (max-width: 768px) {
+  .lyrics-container {
+    flex-direction: column;
+    padding: var(--spacing-4);
+    margin-inline: var(--spacing-4);
+  }
+  .lyrics-notes {
+    padding: var(--spacing-2);
+    font-size: var(--font-size-xs);
+    text-align: center;
+    text-wrap: pretty;
+  }
+
+  .lyrics-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .lyrics-artist {
+    font-size: var(--font-size-sm);
+  }
+
+  .lyrics-line {
+    font-size: var(--font-size-sm);
+  }
+
+  .lyrics-timestamp {
+    font-size: var(--font-size-xs);
+  }
+
+  .player-container {
+    width: 100%;
+  }
+
+  .player-container iframe {
+    width: 100%;
+    place-self: center;
+  }
+  .error {
+    padding: var(--spacing-2);
+    font-size: var(--font-size-sm);
+  }
+}

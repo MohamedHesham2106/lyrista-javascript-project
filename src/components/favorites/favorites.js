@@ -1,4 +1,5 @@
 import { useFavorite } from "../../utils/favorite.module.js";
+
 class Favorites extends HTMLElement {
   constructor() {
     super();
@@ -8,6 +9,7 @@ class Favorites extends HTMLElement {
     this.render();
     this.setupTabs();
   }
+
   disconnectedCallback() {
     this.querySelector(".track-tab")?.removeEventListener("click", this.handleTrackTabClick);
     this.querySelector(".album-tab")?.removeEventListener("click", this.handleAlbumTabClick);
@@ -39,6 +41,7 @@ class Favorites extends HTMLElement {
       });
     }
   }
+
   setupFavoriteButtons(data, type) {
     const { getFavorites, removeFavorite } = useFavorite();
 
@@ -95,6 +98,7 @@ class Favorites extends HTMLElement {
 
     document.body.appendChild(toast);
   }
+
   render() {
     try {
       const { getFavorites } = useFavorite();
@@ -138,20 +142,28 @@ class Favorites extends HTMLElement {
           .map(
             (item) => `
           <div class="result-item">
-           <app-tooltip>
-                  <button class="fav-button" data-id="${item.spotifyUrl}">
-                  <i class="fa-solid fa-heart"></i>
-             </button>
-             </app-tooltip>
             <img src="${item.image}" alt="${item.title}" class="result-image">
             <div class="result-info">
               <h3 class="result-name">${item.title}</h3>
               <p class="result-artist">${item.artist}</p>
             </div>
-            <a href="${item.spotifyUrl}" target="_blank" class="spotify-button">
-              <span class="spotify-button-text">Listen on Spotify</span>
-              <i class="fa-brands fa-spotify spotify-button-icon"></i>
-            </a>
+            <app-tooltip>
+              <button class="fav-button" data-id="${item.spotifyUrl}">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+            </app-tooltip>
+            <div class="button-container">
+              <a href="${item.spotifyUrl}" target="_blank" class="spotify-button">
+                <span class="spotify-button-text">Listen</span>
+                <i class="fa-brands fa-spotify spotify-button-icon"></i>
+              </a>
+              <a href="/src/pages/Lyrics/index.html?artist=${encodeURIComponent(
+                item.artist
+              )}&track=${encodeURIComponent(item.title.replace(/\s*$$[^)]*$$/g, ""))}" target="_blank" class="lyrics-button">
+                <span class="lyrics-button-text">Lyrics</span>
+                <i class="fa-solid fa-music lyrics-button-icon"></i>
+              </a>
+            </div>
           </div>
         `
           )

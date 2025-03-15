@@ -19,7 +19,6 @@ class Navbar extends HTMLElement {
     }
   }
 
-
   setupEventListeners() {
     // Scroll event for scrolled class
     window.addEventListener("scroll", () => {
@@ -78,7 +77,9 @@ class Navbar extends HTMLElement {
     this.header.innerHTML = `
       <nav class="navbar">
         <app-tooltip side="bottom" text="Welcome To Lyrista">
-          <a href="${location.pathname.includes("Authentication") ? "/" : "#"}" class="logo">Lyrista</a>
+          <a href="${
+            location.pathname.includes("Authentication") || location.pathname.includes("Lyrics") ? "/" : "#"
+          }" class="logo">Lyrista</a>
         </app-tooltip>
         <ul class="nav-list">
           <li class="nav-item">
